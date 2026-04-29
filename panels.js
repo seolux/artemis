@@ -33,7 +33,7 @@ function panelGeneral() {
         <ul class="data-list">
           ${Object.entries(d.hours).map(([day,h]) => {
             const isClosed = h === 'Fermé';
-            return dataRow(day.charAt(0).toUpperCase()+day.slice(1), isClosed ? '<span style="color:var(--accent-5)">'+h+'</span>' : h);
+            return dataRow(day.charAt(0).toUpperCase()+day.slice(1), isClosed ? '<span style="color:#dc2626">'+h+'</span>' : h);
           }).join('')}
         </ul>
       </div>
@@ -56,7 +56,7 @@ function panelGeneral() {
       ${d.services.map(s => `
         <div style="padding:10px 14px;background:var(--bg-glass);border-radius:var(--radius-sm);margin-bottom:6px;display:flex;justify-content:space-between;align-items:center">
           <div>
-            <div style="font-size:13px;font-weight:500;display:flex;align-items:center;gap:6px"><i class="fas fa-check" style="color:var(--accent-4);font-size:10px"></i>${s.name}</div>
+            <div style="font-size:13px;font-weight:500;display:flex;align-items:center;gap:6px"><i class="fas fa-check" style="color:#059669;font-size:10px"></i>${s.name}</div>
             <div style="font-size:12px;color:var(--text-muted);margin-left:18px">${s.detail}</div>
           </div>
           <div style="font-size:12px;color:var(--accent-light);font-weight:500;white-space:nowrap">${s.price}</div>
@@ -88,9 +88,9 @@ function panelCertification() {
         ${c.levels.filter(l=>l.id!=='none').map(l => `<span style="color:${c.level===l.id?l.color:'inherit'};font-weight:${c.level===l.id?'600':'400'}">${l.label}</span>`).join('')}
       </div>
       <div style="display:flex;justify-content:center;gap:24px;padding:12px;background:var(--bg-glass);border-radius:var(--radius-md)">
-        <div style="text-align:center"><div style="font-size:20px;font-weight:700;color:#34d399">${passCount}</div><div style="font-size:11px;color:var(--text-muted)">Validés</div></div>
-        <div style="text-align:center"><div style="font-size:20px;font-weight:700;color:#fbbf24">${c.criteria.filter(x=>x.status==='warning').length}</div><div style="font-size:11px;color:var(--text-muted)">Attention</div></div>
-        <div style="text-align:center"><div style="font-size:20px;font-weight:700;color:#f87171">${c.criteria.filter(x=>x.status==='fail').length}</div><div style="font-size:11px;color:var(--text-muted)">Échoués</div></div>
+        <div style="text-align:center"><div style="font-size:20px;font-weight:700;color:#059669">${passCount}</div><div style="font-size:11px;color:var(--text-muted)">Validés</div></div>
+        <div style="text-align:center"><div style="font-size:20px;font-weight:700;color:#d97706">${c.criteria.filter(x=>x.status==='warning').length}</div><div style="font-size:11px;color:var(--text-muted)">Attention</div></div>
+        <div style="text-align:center"><div style="font-size:20px;font-weight:700;color:#dc2626">${c.criteria.filter(x=>x.status==='fail').length}</div><div style="font-size:11px;color:var(--text-muted)">Échoués</div></div>
       </div>
     </div>
     <div class="card animate-in">
@@ -168,7 +168,7 @@ function panelDigital() {
       <div class="card-header"><span class="card-title"><i class="fas fa-globe"></i> Site Web</span><span class="source-tag web">Web</span></div>
       <ul class="data-list">
         ${dataRow('Plateforme', w.platform)}
-        ${dataRow('SSL', w.ssl ? '<span style="color:var(--accent-4)">✓ Actif</span>' : '<span style="color:var(--accent-5)">✗ Inactif</span>')}
+        ${dataRow('SSL', w.ssl ? '<span style="color:#059669">✓ Actif</span>' : '<span style="color:#dc2626">✗ Inactif</span>')}
         ${dataRow('Expiration SSL', w.sslExpiry)}
         ${dataRow('Responsive', w.responsive ? '✓ Oui' : '✗ Non')}
         ${dataRow('Langues', w.languages.join(', '))}

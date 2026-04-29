@@ -78,17 +78,17 @@ function animateScores() {
 function renderStats() {
   const d = COMPANY_DATA;
   const stats = [
-    { icon: 'fas fa-database', label: 'Data Points', value: d.sources.reduce((a,s) => a+s.dataPoints, 0), color: 'var(--accent)' },
-    { icon: 'fas fa-satellite-dish', label: 'Sources', value: d.sources.length, color: 'var(--accent-2)' },
-    { icon: 'fas fa-star', label: 'Note Google', value: d.googleBusiness.rating + '/5', color: 'var(--accent-3)' },
-    { icon: 'fas fa-comment', label: 'Avis totaux', value: d.googleBusiness.totalReviews + 12, color: 'var(--accent-4)' },
-    { icon: 'fas fa-search', label: 'Score SEO', value: d.seo.globalScore + '/100', color: 'var(--accent-5)' },
-    { icon: 'fas fa-map-pin', label: 'Score GEO', value: d.geo.globalScore + '/100', color: 'var(--accent-6)' },
-    { icon: 'fas fa-certificate', label: 'Certification', value: d.certification.level.toUpperCase(), color: 'var(--cert-' + d.certification.level + ')' }
+    { icon: 'fas fa-database', label: 'Data Points', value: d.sources.reduce((a,s) => a+s.dataPoints, 0), color: '#4f46e5', bg: '#eef2ff' },
+    { icon: 'fas fa-satellite-dish', label: 'Sources', value: d.sources.length, color: '#0891b2', bg: '#ecfeff' },
+    { icon: 'fas fa-star', label: 'Note Google', value: d.googleBusiness.rating + '/5', color: '#d97706', bg: '#fffbeb' },
+    { icon: 'fas fa-comment', label: 'Avis totaux', value: d.googleBusiness.totalReviews + 12, color: '#059669', bg: '#ecfdf5' },
+    { icon: 'fas fa-search', label: 'Score SEO', value: d.seo.globalScore + '/100', color: '#dc2626', bg: '#fef2f2' },
+    { icon: 'fas fa-map-pin', label: 'Score GEO', value: d.geo.globalScore + '/100', color: '#db2777', bg: '#fdf2f8' },
+    { icon: 'fas fa-certificate', label: 'Certification', value: d.certification.level.toUpperCase(), color: '#6366f1', bg: '#eef2ff' }
   ];
   document.getElementById('stats-row').innerHTML = stats.map((s,i) => `
     <div class="stat-card animate-in" style="animation-delay:${i*0.05}s">
-      <div class="stat-icon" style="background:${s.color}22;color:${s.color}"><i class="${s.icon}"></i></div>
+      <div class="stat-icon" style="background:${s.bg || '#eef2ff'};color:${s.color}"><i class="${s.icon}"></i></div>
       <div class="stat-value">${s.value}</div>
       <div class="stat-label">${s.label}</div>
     </div>`).join('');
@@ -135,4 +135,4 @@ function renderStars(rating) {
   return Array.from({length:5}, (_,i) => `<span class="star${i < Math.round(rating) ? '' : ' empty'}">★</span>`).join('');
 }
 function formatNum(n) { return n >= 1000 ? (n/1000).toFixed(1)+'K' : n; }
-function scoreColor(s) { return s >= 70 ? '#34d399' : s >= 40 ? '#fbbf24' : '#f87171'; }
+function scoreColor(s) { return s >= 70 ? '#059669' : s >= 40 ? '#d97706' : '#dc2626'; }
