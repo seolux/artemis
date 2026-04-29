@@ -3,14 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Artemis — Outil d'intelligence d'entreprise pour le Luxembourg. Scraping et agrégation de données d'entreprises.">
+  <meta name="description" content="Artemis — Outil d'intelligence d'entreprise pour le Luxembourg. Base de données exhaustive avec certification, audit SEO/GEO et analyse concurrentielle.">
   <title>Artemis — Company Intelligence Luxembourg</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
   <div class="app">
-    <!-- Header -->
     <header class="header">
       <div class="logo">
         <div class="logo-icon">A</div>
@@ -18,44 +17,33 @@
         <span class="logo-badge">Beta</span>
       </div>
       <div class="header-actions">
-        <div class="export-bar">
-          <button class="btn-outline"><i class="fas fa-file-export"></i> Exporter JSON</button>
-          <button class="btn-outline"><i class="fas fa-file-pdf"></i> Rapport PDF</button>
-          <button class="btn-outline"><i class="fas fa-sync-alt"></i> Re-scanner</button>
-        </div>
+        <button class="btn-outline"><i class="fas fa-file-export"></i> JSON</button>
+        <button class="btn-outline"><i class="fas fa-file-pdf"></i> Rapport</button>
+        <button class="btn-outline"><i class="fas fa-sync-alt"></i> Re-scanner</button>
       </div>
     </header>
-
-    <!-- Search -->
     <section class="search-section">
       <div class="search-container">
         <span class="search-icon"><i class="fas fa-search"></i></span>
-        <input type="text" class="search-input" id="search-input" placeholder="Rechercher une entreprise au Luxembourg (nom, RCS, domaine...)" value="Luxsuum">
-        <button class="search-btn" id="search-btn"><i class="fas fa-bolt"></i>&nbsp; Analyser</button>
+        <input type="text" class="search-input" placeholder="Rechercher une entreprise au Luxembourg (nom, RCS, domaine...)" value="Luxsuum">
+        <button class="search-btn"><i class="fas fa-bolt"></i>&nbsp; Analyser</button>
       </div>
       <div class="search-tags">
-        <span class="search-tag">#automobile</span>
-        <span class="search-tag">#services</span>
-        <span class="search-tag">#luxembourgVille</span>
+        <span class="search-tag">#carWash</span>
+        <span class="search-tag">#écologique</span>
         <span class="search-tag">#kirchberg</span>
         <span class="search-tag">#clocheDOr</span>
+        <span class="search-tag">#servicesAuto</span>
       </div>
     </section>
-
-    <!-- Company Hero -->
     <section class="company-hero" id="company-hero"></section>
-
-    <!-- Stats Row -->
     <section class="stats-row" id="stats-row"></section>
-
-    <!-- Tabs -->
     <nav class="tab-nav" id="tab-nav"></nav>
-
-    <!-- Content -->
     <main class="content-area" id="content-area"></main>
   </div>
-
   <script src="data.js"></script>
+  <script src="panels.js"></script>
+  <script src="panels2.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
