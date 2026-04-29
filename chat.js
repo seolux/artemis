@@ -149,13 +149,21 @@ function initChat() {
   // Welcome message
   addMessage('bot', `Bonjour ! 👋 Je suis l'assistant **Artemis**. Posez-moi n'importe quelle question sur **${COMPANY_DATA.name}** et j'y répondrai à partir des données collectées.`);
 
-  // Toggle panel
+  // Toggle panel — only for mobile (≤1024px), on desktop it's always visible
   toggleBtn.addEventListener('click', () => {
     panel.classList.toggle('open');
     toggleBtn.innerHTML = panel.classList.contains('open')
       ? '<i class="fas fa-times"></i>'
       : '<i class="fas fa-comment-dots"></i> Assistant';
   });
+  // Collapse button inside the chat header (mobile only)
+  const collapseBtn = document.getElementById('chat-collapse');
+  if (collapseBtn) {
+    collapseBtn.addEventListener('click', () => {
+      panel.classList.remove('open');
+      toggleBtn.innerHTML = '<i class="fas fa-comment-dots"></i> Assistant';
+    });
+  }
 
   // Send
   function send() {
