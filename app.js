@@ -1,67 +1,98 @@
 // Artemis — Main Application Logic
 document.addEventListener('DOMContentLoaded', () => {
-  renderCompanyHero();
+  renderContextBar();
   renderStats();
-  renderTabs();
+  renderSidebarNav();
   renderAllPanels();
-  initTabs();
+  initNav();
   animateScores();
 });
 
-function initTabs() {
-  document.querySelectorAll('.tab-btn').forEach(btn => {
+const TABS = [
+  { id: 'general',       icon: 'fas fa-building',     label: 'Général',         group: 'Entreprise' },
+  { id: 'digital',       icon: 'fas fa-globe',        label: 'Digital',         group: 'Entreprise' },
+  { id: 'reputation',    icon: 'fas fa-star',         label: 'Réputation',      group: 'Entreprise' },
+  { id: 'social',        icon: 'fas fa-share-alt',    label: 'Réseaux sociaux', group: 'Entreprise' },
+  { id: 'legal',         icon: 'fas fa-gavel',        label: 'Juridique',       group: 'Entreprise' },
+  { id: 'certification', icon: 'fas fa-shield-alt',   label: 'Certification',   group: 'Audits' },
+  { id: 'seo',           icon: 'fas fa-search',       label: 'Audit SEO',       group: 'Audits' },
+  { id: 'geo',           icon: 'fas fa-map-pin',      label: 'Audit GEO',       group: 'Audits' },
+  { id: 'competitors',   icon: 'fas fa-trophy',       label: 'Concurrents',     group: 'Analyse' },
+  { id: 'sources',       icon: 'fas fa-database',     label: 'Sources',         group: 'Analyse' }
+];
+
+function initNav() {
+  document.querySelectorAll('.nav-item').forEach(btn => {
     btn.addEventListener('click', () => {
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
       document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
       btn.classList.add('active');
-      document.getElementById(btn.dataset.tab).classList.add('active');
+      document.getElementById('panel-' + btn.dataset.tab).classList.add('active');
+      // Update breadcrumb
+      const tab = TABS.find(t => t.id === btn.dataset.tab);
+      document.getElementById('breadcrumb-page').textContent = tab ? tab.label : '';
     });
   });
 }
 
-function renderCompanyHero() {
+function renderSidebarNav() {
+  let html = '';
+  let lastGroup = '';
+  TABS.forEach((t, i) => {
+    if (t.group !== lastGroup) {
+      html += `<div class="nav-group-label">${t.group}</div>`;
+      lastGroup = t.group;
+    }
+    html += `<button class="nav-item${i === 0 ? ' active' : ''}" data-tab="${t.id}" title="${t.label}">
+      <i class="${t.icon}"></i>
+      <span class="nav-label">${t.label}</span>
+    </button>`;
+  });
+  document.getElementById('sidebar-nav').innerHTML = html;
+}
+
+function renderContextBar() {
   const d = COMPANY_DATA, c = d.certification;
   const levelInfo = c.levels.find(l => l.id === c.level);
-  document.getElementById('company-hero').innerHTML = `
-    <div class="company-header-card animate-in">
-      <div class="company-top">
-        <div class="company-logo-wrap">${d.logo}</div>
-        <div class="company-info">
-          <div class="company-name">
-            ${d.name}
-            <span class="status-badge ${d.status}">${d.status === 'active' ? '● Actif' : '● Inactif'}</span>
-            <span class="cert-badge ${c.level}" title="Certification Artemis: ${levelInfo.label}">
-              <i class="${levelInfo.icon}"></i> ${levelInfo.label} Certified
-            </span>
-          </div>
-          <div class="company-tagline">${d.tagline}</div>
-          <div class="company-meta">
-            <span class="meta-item"><i class="fas fa-map-marker-alt"></i> Luxembourg</span>
-            <span class="meta-item"><i class="fas fa-industry"></i> ${d.sector}</span>
-            <span class="meta-item"><i class="fas fa-users"></i> ${d.employees} employés</span>
-            <span class="meta-item"><i class="fas fa-calendar"></i> Fondée en ${d.founded}</span>
-            <span class="meta-item"><i class="fas fa-globe"></i> <a href="${d.contact.website}" target="_blank">${d.whois.domain}</a></span>
-            <span class="meta-item"><i class="fas fa-user-tie"></i> ${d.gerant}</span>
-          </div>
+  document.getElementById('context-bar').innerHTML = `
+    <div class="ctx-left">
+      <div class="ctx-logo">${d.logo}</div>
+      <div class="ctx-info">
+        <div class="ctx-name">
+          ${d.name}
+          <span class="status-badge ${d.status}">${d.status === 'active' ? '● Actif' : '● Inactif'}</span>
+          <span class="cert-badge ${c.level}"><i class="${levelInfo.icon}"></i> ${levelInfo.label}</span>
         </div>
-        <div class="company-scores">
-          ${renderScoreCircle(d.scores.completeness, 'Complétude', '--accent')}
-          ${renderScoreCircle(d.scores.digitalPresence, 'Digital', '--accent-2')}
-          ${renderScoreCircle(d.scores.reputation, 'Réputation', '--accent-4')}
+        <div class="ctx-meta">
+          <span><i class="fas fa-map-marker-alt"></i> Luxembourg</span>
+          <span><i class="fas fa-industry"></i> ${d.sector}</span>
+          <span><i class="fas fa-users"></i> ${d.employees} emp.</span>
+          <span><i class="fas fa-globe"></i> <a href="${d.contact.website}" target="_blank">${d.whois.domain}</a></span>
+          <span><i class="fas fa-user-tie"></i> ${d.gerant}</span>
         </div>
       </div>
+    </div>
+    <div class="ctx-scores">
+      ${renderScoreCircle(d.scores.completeness, 'Complétude', '--accent')}
+      ${renderScoreCircle(d.scores.digitalPresence, 'Digital', '--accent-2')}
+      ${renderScoreCircle(d.scores.reputation, 'Réputation', '--accent-4')}
+    </div>
+    <div class="ctx-breadcrumb">
+      <span class="breadcrumb-root"><i class="fas fa-home"></i></span>
+      <span class="breadcrumb-sep">›</span>
+      <span id="breadcrumb-page">Général</span>
     </div>`;
 }
 
 function renderScoreCircle(value, label, colorVar) {
-  const r = 26, c = 2 * Math.PI * r, offset = c - (value / 100) * c;
+  const r = 20, c = 2 * Math.PI * r, offset = c - (value / 100) * c;
   return `<div class="score-circle">
     <div class="score-ring">
-      <svg viewBox="0 0 64 64">
-        <circle cx="32" cy="32" r="${r}" fill="none" stroke="var(--border)" stroke-width="4"/>
-        <circle cx="32" cy="32" r="${r}" fill="none" stroke="var(${colorVar})" stroke-width="4"
+      <svg viewBox="0 0 48 48">
+        <circle cx="24" cy="24" r="${r}" fill="none" stroke="var(--border)" stroke-width="3"/>
+        <circle cx="24" cy="24" r="${r}" fill="none" stroke="var(${colorVar})" stroke-width="3"
           stroke-dasharray="${c}" stroke-dashoffset="${c}" data-target="${offset}"
-          stroke-linecap="round" transform="rotate(-90 32 32)" class="score-arc"/>
+          stroke-linecap="round" transform="rotate(-90 24 24)" class="score-arc"/>
       </svg>
       <span class="score-val">${value}</span>
     </div>
@@ -81,35 +112,16 @@ function renderStats() {
     { icon: 'fas fa-database', label: 'Data Points', value: d.sources.reduce((a,s) => a+s.dataPoints, 0), color: '#4f46e5', bg: '#eef2ff' },
     { icon: 'fas fa-satellite-dish', label: 'Sources', value: d.sources.length, color: '#0891b2', bg: '#ecfeff' },
     { icon: 'fas fa-star', label: 'Note Google', value: d.googleBusiness.rating + '/5', color: '#d97706', bg: '#fffbeb' },
-    { icon: 'fas fa-comment', label: 'Avis totaux', value: d.googleBusiness.totalReviews + 12, color: '#059669', bg: '#ecfdf5' },
-    { icon: 'fas fa-search', label: 'Score SEO', value: d.seo.globalScore + '/100', color: '#dc2626', bg: '#fef2f2' },
-    { icon: 'fas fa-map-pin', label: 'Score GEO', value: d.geo.globalScore + '/100', color: '#db2777', bg: '#fdf2f8' },
-    { icon: 'fas fa-certificate', label: 'Certification', value: d.certification.level.toUpperCase(), color: '#6366f1', bg: '#eef2ff' }
+    { icon: 'fas fa-comment', label: 'Avis', value: d.googleBusiness.totalReviews + 12, color: '#059669', bg: '#ecfdf5' },
+    { icon: 'fas fa-search', label: 'SEO', value: d.seo.globalScore + '/100', color: '#dc2626', bg: '#fef2f2' },
+    { icon: 'fas fa-map-pin', label: 'GEO', value: d.geo.globalScore + '/100', color: '#db2777', bg: '#fdf2f8' }
   ];
   document.getElementById('stats-row').innerHTML = stats.map((s,i) => `
-    <div class="stat-card animate-in" style="animation-delay:${i*0.05}s">
-      <div class="stat-icon" style="background:${s.bg || '#eef2ff'};color:${s.color}"><i class="${s.icon}"></i></div>
+    <div class="stat-card animate-in" style="animation-delay:${i*0.04}s">
+      <div class="stat-icon" style="background:${s.bg};color:${s.color}"><i class="${s.icon}"></i></div>
       <div class="stat-value">${s.value}</div>
       <div class="stat-label">${s.label}</div>
     </div>`).join('');
-}
-
-function renderTabs() {
-  const tabs = [
-    { id: 'general', icon: 'fas fa-building', label: 'Général' },
-    { id: 'certification', icon: 'fas fa-certificate', label: 'Certification' },
-    { id: 'seo', icon: 'fas fa-search', label: 'Audit SEO' },
-    { id: 'geo', icon: 'fas fa-map-pin', label: 'Audit GEO' },
-    { id: 'digital', icon: 'fas fa-globe', label: 'Digital' },
-    { id: 'reputation', icon: 'fas fa-star', label: 'Réputation' },
-    { id: 'social', icon: 'fas fa-share-alt', label: 'Réseaux sociaux' },
-    { id: 'competitors', icon: 'fas fa-trophy', label: 'Concurrents' },
-    { id: 'legal', icon: 'fas fa-gavel', label: 'Juridique' },
-    { id: 'sources', icon: 'fas fa-database', label: 'Sources' }
-  ];
-  document.getElementById('tab-nav').innerHTML = tabs.map((t,i) =>
-    `<button class="tab-btn${i===0?' active':''}" data-tab="panel-${t.id}"><i class="${t.icon}"></i> ${t.label}</button>`
-  ).join('');
 }
 
 function renderAllPanels() {

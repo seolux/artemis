@@ -17,46 +17,43 @@
         <div class="logo-text">Artemis<span>.lu</span></div>
         <span class="logo-badge">Beta</span>
       </div>
+      <div class="header-center">
+        <div class="search-container">
+          <span class="search-icon"><i class="fas fa-search"></i></span>
+          <input type="text" class="search-input" placeholder="Rechercher une entreprise (nom, RCS, domaine...)" value="Luxsuum">
+          <button class="search-btn"><i class="fas fa-bolt"></i> Analyser</button>
+        </div>
+      </div>
       <div class="header-actions">
-        <button class="btn-outline"><i class="fas fa-file-export"></i> JSON</button>
         <button class="btn-outline"><i class="fas fa-file-pdf"></i> Rapport</button>
-        <button class="btn-outline"><i class="fas fa-sync-alt"></i> Re-scanner</button>
+        <button class="btn-outline"><i class="fas fa-sync-alt"></i></button>
         <button id="chat-toggle"><i class="fas fa-comment-dots"></i> Assistant</button>
       </div>
     </header>
 
-    <!-- Layout: Main + Chat Sidebar -->
+    <!-- 3-Column Layout: Sidebar Nav | Main | Chat -->
     <div class="app-layout">
-      <div class="app-main">
-        <!-- Search -->
-        <section class="search-section">
-          <div class="search-container">
-            <span class="search-icon"><i class="fas fa-search"></i></span>
-            <input type="text" class="search-input" placeholder="Rechercher une entreprise au Luxembourg (nom, RCS, domaine...)" value="Luxsuum">
-            <button class="search-btn"><i class="fas fa-bolt"></i>&nbsp; Analyser</button>
-          </div>
-          <div class="search-tags">
-            <span class="search-tag">#carWash</span>
-            <span class="search-tag">#écologique</span>
-            <span class="search-tag">#kirchberg</span>
-            <span class="search-tag">#clocheDOr</span>
-            <span class="search-tag">#servicesAuto</span>
-          </div>
-        </section>
 
-        <section class="company-hero" id="company-hero"></section>
+      <!-- Left: Icon Sidebar Nav -->
+      <nav class="sidebar-nav" id="sidebar-nav"></nav>
+
+      <!-- Center: Main Content -->
+      <div class="app-main">
+        <!-- Company context bar -->
+        <div class="context-bar" id="context-bar"></div>
+        <!-- Stats row -->
         <section class="stats-row" id="stats-row"></section>
-        <nav class="tab-nav" id="tab-nav"></nav>
+        <!-- Active panel content -->
         <main class="content-area" id="content-area"></main>
       </div>
 
-      <!-- Integrated Chat Panel -->
+      <!-- Right: Chat -->
       <aside class="chat-panel" id="chat-panel">
         <div class="chat-header">
           <div class="chat-header-icon"><i class="fas fa-robot"></i></div>
           <div class="chat-header-info">
             <div class="chat-header-title">Assistant Artemis</div>
-            <div class="chat-header-sub">Données en temps réel sur Luxsuum</div>
+            <div class="chat-header-sub">Données en temps réel</div>
           </div>
           <div class="chat-header-status" title="En ligne"></div>
           <button class="chat-header-collapse" id="chat-collapse" title="Fermer"><i class="fas fa-times"></i></button>
@@ -64,7 +61,7 @@
         <div class="chat-messages" id="chat-messages"></div>
         <div class="chat-suggestions" id="chat-suggestions"></div>
         <div class="chat-input-area">
-          <input type="text" id="chat-input" placeholder="Posez une question sur l'entreprise...">
+          <input type="text" id="chat-input" placeholder="Posez une question...">
           <button class="chat-send-btn" id="chat-send"><i class="fas fa-paper-plane"></i></button>
         </div>
       </aside>
