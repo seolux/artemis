@@ -10,6 +10,7 @@
 </head>
 <body>
   <div class="app">
+    <!-- Header -->
     <header class="header">
       <div class="logo">
         <div class="logo-icon">A</div>
@@ -20,30 +21,59 @@
         <button class="btn-outline"><i class="fas fa-file-export"></i> JSON</button>
         <button class="btn-outline"><i class="fas fa-file-pdf"></i> Rapport</button>
         <button class="btn-outline"><i class="fas fa-sync-alt"></i> Re-scanner</button>
+        <button id="chat-toggle"><i class="fas fa-comment-dots"></i> Assistant</button>
       </div>
     </header>
-    <section class="search-section">
-      <div class="search-container">
-        <span class="search-icon"><i class="fas fa-search"></i></span>
-        <input type="text" class="search-input" placeholder="Rechercher une entreprise au Luxembourg (nom, RCS, domaine...)" value="Luxsuum">
-        <button class="search-btn"><i class="fas fa-bolt"></i>&nbsp; Analyser</button>
+
+    <!-- Layout: Main + Chat Sidebar -->
+    <div class="app-layout">
+      <div class="app-main">
+        <!-- Search -->
+        <section class="search-section">
+          <div class="search-container">
+            <span class="search-icon"><i class="fas fa-search"></i></span>
+            <input type="text" class="search-input" placeholder="Rechercher une entreprise au Luxembourg (nom, RCS, domaine...)" value="Luxsuum">
+            <button class="search-btn"><i class="fas fa-bolt"></i>&nbsp; Analyser</button>
+          </div>
+          <div class="search-tags">
+            <span class="search-tag">#carWash</span>
+            <span class="search-tag">#écologique</span>
+            <span class="search-tag">#kirchberg</span>
+            <span class="search-tag">#clocheDOr</span>
+            <span class="search-tag">#servicesAuto</span>
+          </div>
+        </section>
+
+        <section class="company-hero" id="company-hero"></section>
+        <section class="stats-row" id="stats-row"></section>
+        <nav class="tab-nav" id="tab-nav"></nav>
+        <main class="content-area" id="content-area"></main>
       </div>
-      <div class="search-tags">
-        <span class="search-tag">#carWash</span>
-        <span class="search-tag">#écologique</span>
-        <span class="search-tag">#kirchberg</span>
-        <span class="search-tag">#clocheDOr</span>
-        <span class="search-tag">#servicesAuto</span>
-      </div>
-    </section>
-    <section class="company-hero" id="company-hero"></section>
-    <section class="stats-row" id="stats-row"></section>
-    <nav class="tab-nav" id="tab-nav"></nav>
-    <main class="content-area" id="content-area"></main>
+
+      <!-- Integrated Chat Panel -->
+      <aside class="chat-panel" id="chat-panel">
+        <div class="chat-header">
+          <div class="chat-header-icon"><i class="fas fa-robot"></i></div>
+          <div class="chat-header-info">
+            <div class="chat-header-title">Assistant Artemis</div>
+            <div class="chat-header-sub">Données en temps réel sur Luxsuum</div>
+          </div>
+          <div class="chat-header-status" title="En ligne"></div>
+        </div>
+        <div class="chat-messages" id="chat-messages"></div>
+        <div class="chat-suggestions" id="chat-suggestions"></div>
+        <div class="chat-input-area">
+          <input type="text" id="chat-input" placeholder="Posez une question sur l'entreprise...">
+          <button class="chat-send-btn" id="chat-send"><i class="fas fa-paper-plane"></i></button>
+        </div>
+      </aside>
+    </div>
   </div>
+
   <script src="data.js"></script>
   <script src="panels.js"></script>
   <script src="panels2.js"></script>
   <script src="app.js"></script>
+  <script src="chat.js"></script>
 </body>
 </html>
