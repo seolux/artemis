@@ -188,3 +188,47 @@ function panelSources() {
     </div>
   </div>`;
 }
+
+function panelAPI() {
+  return `<div class="card full animate-in">
+    <div class="card-header" style="margin-bottom:8px">
+      <span class="card-title"><i class="fas fa-code"></i> API & Model Context Protocol (MCP)</span>
+      <span class="cert-badge platinum"><i class="fas fa-crown"></i> Enterprise Only</span>
+    </div>
+    <div style="font-size:13px;color:var(--text-secondary);margin-bottom:24px">
+      Artemis by Editus.lu fournit un accès programmatique complet aux données d'intelligence d'entreprise pour intégrer ces informations directement dans vos CRM, ERP ou assistants IA.
+    </div>
+
+    <div class="grid-2">
+      <!-- REST API -->
+      <div style="background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--radius-md);padding:20px">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+          <div style="width:36px;height:36px;border-radius:8px;background:#eef2ff;color:#4f46e5;display:grid;place-items:center;font-size:16px"><i class="fas fa-server"></i></div>
+          <div><div style="font-size:14px;font-weight:600">REST API v2</div><div style="font-size:11px;color:var(--text-muted)">Format JSON / Accès direct</div></div>
+        </div>
+        <div style="font-size:12px;color:var(--text-secondary);margin-bottom:12px">Recherchez des entreprises, obtenez les scores SEO/GEO et récupérez les données légales via notre API REST haute disponibilité.</div>
+        <div style="background:#1e1e1e;color:#d4d4d4;padding:12px;border-radius:6px;font-family:var(--font-mono);font-size:11px;overflow-x:auto;line-height:1.5">
+<span style="color:#569cd6">curl</span> -X GET "https://api.artemis.lu/v2/companies/LUXSUUM" \\
+     -H <span style="color:#ce9178">"Authorization: Bearer YOUR_API_KEY"</span>
+        </div>
+        <button class="btn-outline" style="margin-top:16px;width:100%;justify-content:center">Documentation API</button>
+      </div>
+
+      <!-- MCP -->
+      <div style="background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--radius-md);padding:20px">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+          <div style="width:36px;height:36px;border-radius:8px;background:#ecfdf5;color:#059669;display:grid;place-items:center;font-size:16px"><i class="fas fa-microchip"></i></div>
+          <div><div style="font-size:14px;font-weight:600">Model Context Protocol</div><div style="font-size:11px;color:var(--text-muted)">Intégration LLM (Claude, ChatGPT...)</div></div>
+        </div>
+        <div style="font-size:12px;color:var(--text-secondary);margin-bottom:12px">Permettez à vos agents IA de requêter Artemis pour rédiger des analyses concurrentielles ou valider des prospects en langage naturel.</div>
+        <div style="background:#1e1e1e;color:#d4d4d4;padding:12px;border-radius:6px;font-family:var(--font-mono);font-size:11px;overflow-x:auto;line-height:1.5">
+<span style="color:#dcdcaa">call</span>:<span style="color:#9cdcfe">artemis_api:get_company</span> {
+  <span style="color:#ce9178">"rcs"</span>: <span style="color:#b5cea8">"B234567"</span>,
+  <span style="color:#ce9178">"include_competitors"</span>: <span style="color:#569cd6">true</span>
+}
+        </div>
+        <button class="btn-outline" style="margin-top:16px;width:100%;justify-content:center">Installer le Serveur MCP</button>
+      </div>
+    </div>
+  </div>`;
+}

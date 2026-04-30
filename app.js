@@ -18,7 +18,8 @@ const TABS = [
   { id: 'seo',           icon: 'fas fa-search',       label: 'Audit SEO',       group: 'Audits' },
   { id: 'geo',           icon: 'fas fa-map-pin',      label: 'Audit GEO',       group: 'Audits' },
   { id: 'competitors',   icon: 'fas fa-trophy',       label: 'Concurrents',     group: 'Analyse' },
-  { id: 'sources',       icon: 'fas fa-database',     label: 'Sources',         group: 'Analyse' }
+  { id: 'sources',       icon: 'fas fa-database',     label: 'Sources',         group: 'Analyse' },
+  { id: 'api',           icon: 'fas fa-code',         label: 'API & Intégration',group:'Developers' }
 ];
 
 function initNav() {
@@ -136,6 +137,7 @@ function renderAllPanels() {
     <div id="panel-competitors" class="tab-panel">${panelCompetitors()}</div>
     <div id="panel-legal" class="tab-panel">${panelLegal()}</div>
     <div id="panel-sources" class="tab-panel">${panelSources()}</div>
+    <div id="panel-api" class="tab-panel">${typeof panelAPI === 'function' ? panelAPI() : ''}</div>
   `;
 }
 
