@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Artemis — Outil d'intelligence d'entreprise pour le Luxembourg. Base de données exhaustive avec certification, audit SEO/GEO et analyse concurrentielle.">
+  <title>Artemis — Company Intelligence Luxembourg</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+  <div class="app">
+    <!-- Header -->
+    <header class="header">
+      <a href="index.html" style="text-decoration:none; color:inherit;">
+        <div class="logo">
+          <div class="logo-icon">A</div>
+          <div class="logo-text">Artemis<span>.lu</span></div>
+          <div class="logo-branding">
+            <span class="logo-badge">Beta</span>
+            <span class="powered-by">by <strong>Editus</strong> <span class="post-group">(POST Luxembourg)</span></span>
+          </div>
+        </div>
+      </a>
+      <div class="header-center">
+        <div class="search-container">
+          <span class="search-icon"><i class="fas fa-search"></i></span>
+          <input type="text" class="search-input" placeholder="Rechercher dans l'annuaire national (nom, RCS, domaine...)" value="Luxsuum">
+          <button class="search-btn"><i class="fas fa-bolt"></i> Analyser</button>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button class="btn-claim"><i class="fas fa-check-circle"></i> Revendiquer l'entreprise</button>
+        <button class="btn-outline"><i class="fas fa-file-pdf"></i> Rapport</button>
+        <button class="btn-outline"><i class="fas fa-sync-alt"></i></button>
+        <button id="chat-toggle"><i class="fas fa-comment-dots"></i> Assistant</button>
+      </div>
+    </header>
+
+    <!-- 3-Column Layout: Sidebar Nav | Main | Chat -->
+    <div class="app-layout">
+
+      <!-- Left: Icon Sidebar Nav -->
+      <nav class="sidebar-nav" id="sidebar-nav"></nav>
+
+      <!-- Center: Main Content -->
+      <div class="app-main">
+        <!-- Company context bar -->
+        <div class="context-bar" id="context-bar"></div>
+        <!-- Stats row -->
+        <section class="stats-row" id="stats-row"></section>
+        <!-- Active panel content -->
+        <main class="content-area" id="content-area"></main>
+      </div>
+
+      <!-- Right: Chat -->
+      <aside class="chat-panel" id="chat-panel">
+        <div class="chat-header">
+          <div class="chat-header-icon"><i class="fas fa-robot"></i></div>
+          <div class="chat-header-info">
+            <div class="chat-header-title">Assistant Artemis</div>
+            <div class="chat-header-sub">Données en temps réel</div>
+          </div>
+          <div class="chat-header-status" title="En ligne"></div>
+          <button class="chat-header-collapse" id="chat-collapse" title="Fermer"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="chat-messages" id="chat-messages"></div>
+        <div class="chat-suggestions" id="chat-suggestions"></div>
+        <div class="chat-input-area">
+          <input type="text" id="chat-input" placeholder="Posez une question...">
+          <button class="chat-send-btn" id="chat-send"><i class="fas fa-paper-plane"></i></button>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="panels.js"></script>
+  <script src="panels2.js"></script>
+  <script src="app.js"></script>
+  <script src="chat.js"></script>
+</body>
+</html>

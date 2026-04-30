@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Annuaire Artemis — Luxembourg</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body style="background:var(--bg-secondary)">
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="logo">
+      <div class="logo-icon">A</div>
+      <div class="logo-text">Artemis<span>.lu</span></div>
+      <div class="logo-branding">
+        <span class="logo-badge">Beta</span>
+        <span class="powered-by">by <strong>Editus</strong> <span class="post-group">(POST Luxembourg)</span></span>
+      </div>
+    </div>
+    <div class="header-center" style="max-width:400px; margin-left:32px;">
+      <div class="search-container">
+        <span class="search-icon"><i class="fas fa-search"></i></span>
+        <input type="text" class="search-input" placeholder="Rechercher...">
+      </div>
+    </div>
+    <nav class="site-nav" style="margin-left:auto; margin-right:32px">
+      <a href="index.html">Accueil</a>
+      <a href="directory.html" class="active">Annuaire National</a>
+      <a href="marketing-b2b.html">Pour les Entreprises</a>
+      <a href="dashboard.html">API & Développeurs</a>
+    </nav>
+    <div class="header-actions">
+      <a href="marketing-b2b.html" style="text-decoration:none"><button class="btn-claim"><i class="fas fa-check-circle"></i> Revendiquer</button></a>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="site-main" style="max-width:1400px">
+    
+    <div style="margin-bottom:32px">
+      <h1 style="font-size:32px;font-weight:800;margin-bottom:8px">Annuaire National des Entreprises</h1>
+      <p style="color:var(--text-secondary)">Explorez les données certifiées de 14 500+ entreprises au Luxembourg.</p>
+    </div>
+
+    <div class="directory-layout">
+      <!-- Sidebar Filters -->
+      <aside class="dir-sidebar">
+        <div class="dir-filter-group">
+          <div class="dir-filter-label">Certification Artemis</div>
+          <label class="dir-checkbox"><input type="checkbox" checked> <span class="cert-badge platinum" style="padding:0 6px"><i class="fas fa-crown"></i> Platinum</span></label>
+          <label class="dir-checkbox"><input type="checkbox" checked> <span class="cert-badge gold" style="padding:0 6px">Gold</span></label>
+          <label class="dir-checkbox"><input type="checkbox" checked> <span class="cert-badge silver" style="padding:0 6px">Silver</span></label>
+          <label class="dir-checkbox"><input type="checkbox"> <span class="cert-badge bronze" style="padding:0 6px">Bronze</span></label>
+          <label class="dir-checkbox"><input type="checkbox"> <span>Non certifié</span></label>
+        </div>
+
+        <div class="dir-filter-group">
+          <div class="dir-filter-label">Secteur d'activité</div>
+          <label class="dir-checkbox"><input type="checkbox" checked> <span>Services automobiles (124)</span></label>
+          <label class="dir-checkbox"><input type="checkbox"> <span>HORECA (850)</span></label>
+          <label class="dir-checkbox"><input type="checkbox"> <span>Artisanat (430)</span></label>
+          <label class="dir-checkbox"><input type="checkbox"> <span>Services B2B (1200)</span></label>
+        </div>
+
+        <div class="dir-filter-group">
+          <div class="dir-filter-label">Localisation</div>
+          <label class="dir-checkbox"><input type="checkbox"> <span>Luxembourg-Ville</span></label>
+          <label class="dir-checkbox"><input type="checkbox"> <span>Esch-sur-Alzette</span></label>
+          <label class="dir-checkbox"><input type="checkbox"> <span>Bertrange</span></label>
+        </div>
+      </aside>
+
+      <!-- Results Grid -->
+      <div class="dir-results">
+        
+        <!-- Card 1 -->
+        <a href="dashboard.html" class="company-card">
+          <div class="cc-header">
+            <div class="cc-logo" style="background:#eef2ff;color:#4f46e5">L</div>
+            <div>
+              <div class="cc-name">Luxsuum S.à r.l. <i class="fas fa-check-circle" style="color:#059669;font-size:12px" title="Profil Revendiqué"></i></div>
+              <div class="cc-meta">Luxembourg · Nettoyage Auto</div>
+            </div>
+          </div>
+          <div style="margin-bottom:12px"><span class="cert-badge silver">Silver Certified</span></div>
+          <div style="font-size:12px;color:var(--text-secondary);line-height:1.5">Leader écologique du nettoyage de véhicules au Grand-Duché.</div>
+          <div class="cc-scores">
+            <div class="cc-score"><div class="cc-s-val">78</div><div class="cc-s-lbl">Complétude</div></div>
+            <div class="cc-score"><div class="cc-s-val" style="color:var(--accent-2)">65</div><div class="cc-s-lbl">Digital</div></div>
+            <div class="cc-score"><div class="cc-s-val" style="color:var(--accent-4)">82</div><div class="cc-s-lbl">Réputation</div></div>
+          </div>
+        </a>
+
+        <!-- Card 2 -->
+        <a href="dashboard.html" class="company-card">
+          <div class="cc-header">
+            <div class="cc-logo" style="background:#fffbeb;color:#d97706">M</div>
+            <div>
+              <div class="cc-name">Magic Car Wash</div>
+              <div class="cc-meta">Bertrange · Lavage Auto</div>
+            </div>
+          </div>
+          <div style="margin-bottom:12px"><span class="cert-badge bronze">Bronze Certified</span></div>
+          <div style="font-size:12px;color:var(--text-secondary);line-height:1.5">Station de lavage avec portiques haute pression.</div>
+          <div class="cc-scores">
+            <div class="cc-score"><div class="cc-s-val">42</div><div class="cc-s-lbl">Complétude</div></div>
+            <div class="cc-score"><div class="cc-s-val" style="color:var(--accent-2)">38</div><div class="cc-s-lbl">Digital</div></div>
+            <div class="cc-score"><div class="cc-s-val" style="color:var(--accent-4)">62</div><div class="cc-s-lbl">Réputation</div></div>
+          </div>
+        </a>
+
+        <!-- Card 3 -->
+        <a href="dashboard.html" class="company-card">
+          <div class="cc-header">
+            <div class="cc-logo" style="background:#ecfdf5;color:#059669">W</div>
+            <div>
+              <div class="cc-name">Wash&Go Luxembourg</div>
+              <div class="cc-meta">Strassen · Lavage Auto</div>
+            </div>
+          </div>
+          <div style="margin-bottom:12px"><span class="cert-badge silver">Silver Certified</span></div>
+          <div style="font-size:12px;color:var(--text-secondary);line-height:1.5">Service rapide de lavage extérieur et intérieur.</div>
+          <div class="cc-scores">
+            <div class="cc-score"><div class="cc-s-val">68</div><div class="cc-s-lbl">Complétude</div></div>
+            <div class="cc-score"><div class="cc-s-val" style="color:var(--accent-2)">52</div><div class="cc-s-lbl">Digital</div></div>
+            <div class="cc-score"><div class="cc-s-val" style="color:var(--accent-4)">71</div><div class="cc-s-lbl">Réputation</div></div>
+          </div>
+        </a>
+
+        <!-- Card 4 -->
+        <a href="dashboard.html" class="company-card">
+          <div class="cc-header">
+            <div class="cc-logo" style="background:#fef2f2;color:#dc2626">A</div>
+            <div>
+              <div class="cc-name">Autopflege Lux</div>
+              <div class="cc-meta">Esch-sur-Alzette · Detailing</div>
+            </div>
+          </div>
+          <div style="margin-bottom:12px"><span class="cert-badge gold">Gold Certified</span></div>
+          <div style="font-size:12px;color:var(--text-secondary);line-height:1.5">Detailing automobile haut de gamme et pose de céramique.</div>
+          <div class="cc-scores">
+            <div class="cc-score"><div class="cc-s-val">85</div><div class="cc-s-lbl">Complétude</div></div>
+            <div class="cc-score"><div class="cc-s-val" style="color:var(--accent-2)">61</div><div class="cc-s-lbl">Digital</div></div>
+            <div class="cc-score"><div class="cc-s-val" style="color:var(--accent-4)">55</div><div class="cc-s-lbl">Réputation</div></div>
+          </div>
+        </a>
+
+      </div>
+    </div>
+
+  </main>
+
+</body>
+</html>
