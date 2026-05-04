@@ -259,15 +259,15 @@ const COMPANY_DATA = {
 
   // ── Sources ──
   sources: [
-    { name: "Site web officiel", url: "luxsuum.lu", status: "ok", lastScan: "2026-04-29", dataPoints: 32, icon: "fas fa-globe" },
-    { name: "Google Business Profile", url: "google.com/maps", status: "ok", lastScan: "2026-04-29", dataPoints: 22, icon: "fab fa-google" },
-    { name: "WHOIS luxsuum.lu", url: "whois.lu", status: "ok", lastScan: "2026-04-29", dataPoints: 8, icon: "fas fa-server" },
-    { name: "RCS Luxembourg", url: "lbr.lu", status: "partial", lastScan: "2026-04-29", dataPoints: 7, icon: "fas fa-gavel" },
-    { name: "Editus.lu", url: "editus.lu", status: "ok", lastScan: "2026-04-29", dataPoints: 14, icon: "fas fa-book" },
-    { name: "Facebook", url: "facebook.com/luxsuum", status: "ok", lastScan: "2026-04-29", dataPoints: 10, icon: "fab fa-facebook" },
-    { name: "Instagram", url: "instagram.com/luxsuum.lu", status: "ok", lastScan: "2026-04-29", dataPoints: 8, icon: "fab fa-instagram" },
-    { name: "Cloche d'Or Shopping", url: "clochedor-shopping.lu", status: "ok", lastScan: "2026-04-29", dataPoints: 4, icon: "fas fa-shopping-bag" },
-    { name: "Recommend.lu", url: "recommend.lu", status: "ok", lastScan: "2026-04-29", dataPoints: 6, icon: "fas fa-thumbs-up" },
-    { name: "PageSpeed Insights", url: "pagespeed.web.dev", status: "ok", lastScan: "2026-04-29", dataPoints: 12, icon: "fas fa-tachometer-alt" }
+    { name: "Site web officiel", url: "luxsuum.lu", type: "Web Scraping", status: "ok", lastScan: "2026-04-29", dataPoints: 32, icon: "fas fa-globe", dataRecovered: ["Meta tags", "Mentions légales", "Contenu textuel", "Images"], crawlabilityScore: 85, crawlabilityNotes: "Structure HTML standard (Wix), pas de blocage agressif détecté." },
+    { name: "Google Business Profile", url: "google.com/maps", type: "API / Scraping", status: "ok", lastScan: "2026-04-29", dataPoints: 22, icon: "fab fa-google", dataRecovered: ["Note moyenne", "Avis clients", "Horaires", "Photos", "Catégorie"], crawlabilityScore: 40, crawlabilityNotes: "Scraping difficile (captchas, changements DOM), préférable via API payante." },
+    { name: "WHOIS luxsuum.lu", url: "whois.lu", type: "Base de données", status: "ok", lastScan: "2026-04-29", dataPoints: 8, icon: "fas fa-server", dataRecovered: ["Registrar", "Date de création", "Date d'expiration", "Serveurs DNS"], crawlabilityScore: 95, crawlabilityNotes: "Accès très facile via protocole WHOIS ou API Restena." },
+    { name: "RCS Luxembourg", url: "lbr.lu", type: "Registre public", status: "partial", lastScan: "2026-04-29", dataPoints: 7, icon: "fas fa-gavel", dataRecovered: ["N° RCS", "Raison sociale", "Siège social", "Gérant"], crawlabilityScore: 20, crawlabilityNotes: "Forte protection anti-bot, structure PDF complexe pour l'extraction." },
+    { name: "Editus.lu", url: "editus.lu", type: "Annuaire", status: "ok", lastScan: "2026-04-29", dataPoints: 14, icon: "fas fa-book", dataRecovered: ["Adresse", "Téléphone", "Secteur", "Avis locaux"], crawlabilityScore: 75, crawlabilityNotes: "Structure HTML sémantique, mais rate limiting potentiel sur les IP." },
+    { name: "Facebook", url: "facebook.com/luxsuum", type: "Réseau social", status: "ok", lastScan: "2026-04-29", dataPoints: 10, icon: "fab fa-facebook", dataRecovered: ["Abonnés", "Posts récents", "Contact"], crawlabilityScore: 30, crawlabilityNotes: "Scraping web bloqué sans compte, nécessite l'API Graph restreinte." },
+    { name: "Instagram", url: "instagram.com/luxsuum.lu", type: "Réseau social", status: "ok", lastScan: "2026-04-29", dataPoints: 8, icon: "fab fa-instagram", dataRecovered: ["Followers", "Engagement", "Hashtags"], crawlabilityScore: 25, crawlabilityNotes: "Forte protection, redirection login systématique, API stricte." },
+    { name: "Cloche d'Or Shopping", url: "clochedor-shopping.lu", type: "Web Scraping", status: "ok", lastScan: "2026-04-29", dataPoints: 4, icon: "fas fa-shopping-bag", dataRecovered: ["Emplacement", "Horaires", "Description courte"], crawlabilityScore: 90, crawlabilityNotes: "Site vitrine simple, extraction directe possible sans blocage." },
+    { name: "Recommend.lu", url: "recommend.lu", type: "Annuaire / Avis", status: "ok", lastScan: "2026-04-29", dataPoints: 6, icon: "fas fa-thumbs-up", dataRecovered: ["Profil existant", "Recommandations"], crawlabilityScore: 80, crawlabilityNotes: "DOM facilement parsable, pas de mesures anti-scraping identifiées." },
+    { name: "PageSpeed Insights", url: "pagespeed.web.dev", type: "API", status: "ok", lastScan: "2026-04-29", dataPoints: 12, icon: "fas fa-tachometer-alt", dataRecovered: ["Score SEO", "Chargement", "Core Web Vitals"], crawlabilityScore: 100, crawlabilityNotes: "API Google gratuite et documentée, intégration directe et fiable." }
   ]
 };

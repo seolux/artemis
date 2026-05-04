@@ -173,18 +173,57 @@ function panelSources() {
       <span class="card-title"><i class="fas fa-satellite-dish"></i> Sources de données (${d.sources.length})</span>
       <span style="font-size:13px;color:var(--text-muted)">${total} data points collectés</span>
     </div>
-    <div style="display:grid;gap:8px">
-      ${d.sources.map(s => `
-        <div style="display:flex;align-items:center;gap:16px;padding:14px 16px;background:var(--bg-glass);border-radius:var(--radius-md)">
-          <div style="width:32px;height:32px;border-radius:var(--radius-sm);background:var(--bg-card);display:grid;place-items:center;color:var(--accent-light)"><i class="${s.icon}"></i></div>
-          <div style="flex:1">
-            <div style="font-size:14px;font-weight:500">${s.name}</div>
-            <div style="font-size:12px;color:var(--text-muted)">${s.url}</div>
-          </div>
-          <div style="text-align:center"><div style="font-size:16px;font-weight:600">${s.dataPoints}</div><div style="font-size:10px;color:var(--text-muted)">points</div></div>
-          <div style="font-size:12px;color:var(--text-muted)">${s.lastScan}</div>
-          <div style="font-size:11px;padding:3px 10px;border-radius:10px;background:${s.status==='ok'?'#ecfdf5':'#fffbeb'};color:${s.status==='ok'?'#059669':'#d97706'}">${s.status==='ok'?'✓ Complet':'⚠ Partiel'}</div>
-        </div>`).join('')}
+    <div style="overflow-x:auto">
+      <table class="comp-table" style="min-width: 900px; margin-top: 10px;">
+        <thead><tr>
+          <th style="width:25%">Source & Type</th>
+          <th style="width:15%">Statut & Scan</th>
+          <th style="width:30%">Données récupérées</th>
+          <th style="width:10%;text-align:center">Points</th>
+          <th style="width:20%">Note de Crawlabilité</th>
+        </tr></thead>
+        <tbody>
+          ${d.sources.map(s => {
+            const crawlColor = s.crawlabilityScore >= 80 ? '#059669' : s.crawlabilityScore >= 50 ? '#d97706' : '#dc2626';
+            const crawlBg = s.crawlabilityScore >= 80 ? '#ecfdf5' : s.crawlabilityScore >= 50 ? '#fffbeb' : '#fef2f2';
+            
+            return `<tr>
+              <td>
+                <div style="display:flex;align-items:center;gap:12px">
+                  <div style="width:32px;height:32px;border-radius:var(--radius-sm);background:var(--bg-glass);display:grid;place-items:center;color:var(--accent-light);flex-shrink:0"><i class="${s.icon}"></i></div>
+                  <div>
+                    <div style="font-size:14px;font-weight:600">${s.name}</div>
+                    <div style="font-size:11px;color:var(--text-muted)">${s.url} • <span style="color:var(--text-secondary)">${s.type}</span></div>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div style="margin-bottom:4px">
+                  <span style="font-size:11px;padding:3px 8px;border-radius:10px;background:${s.status==='ok'?'#ecfdf5':'#fffbeb'};color:${s.status==='ok'?'#059669':'#d97706'}">${s.status==='ok'?'✓ Complet':'⚠ Partiel'}</span>
+                </div>
+                <div style="font-size:11px;color:var(--text-muted)">${s.lastScan}</div>
+              </td>
+              <td>
+                <div style="display:flex;flex-wrap:wrap;gap:4px">
+                  ${s.dataRecovered.map(tag => `<span style="font-size:10px;padding:2px 6px;background:var(--bg-glass);border:1px solid var(--border);border-radius:4px;color:var(--text-secondary)">${tag}</span>`).join('')}
+                </div>
+              </td>
+              <td style="text-align:center">
+                <span style="font-size:16px;font-weight:600;color:var(--accent-light)">${s.dataPoints}</span>
+              </td>
+              <td>
+                <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+                  <div class="progress-bar" style="flex:1;height:6px;background:var(--bg-glass)"><div class="progress-fill" style="width:${s.crawlabilityScore}%;background:${crawlColor}"></div></div>
+                  <span style="font-size:12px;font-weight:600;color:${crawlColor}">${s.crawlabilityScore}/100</span>
+                </div>
+                <div style="font-size:10px;color:var(--text-muted);line-height:1.3" title="${s.crawlabilityNotes}">
+                  ${s.crawlabilityNotes}
+                </div>
+              </td>
+            </tr>`;
+          }).join('')}
+        </tbody>
+      </table>
     </div>
   </div>`;
 }
