@@ -168,55 +168,102 @@ function panelLegal() {
 function panelSources() {
   const d = COMPANY_DATA;
   const total = d.sources.reduce((a,s) => a+s.dataPoints, 0);
-  return `<div class="card full animate-in">
+  const avgCrawl = Math.round(d.sources.reduce((a,s) => a+s.crawlabilityScore, 0) / d.sources.length);
+  const avgColor = avgCrawl >= 70 ? '#059669' : avgCrawl >= 40 ? '#d97706' : '#dc2626';
+  const totalTags = d.sources.reduce((a,s) => a+s.dataRecovered.length, 0);
+  
+  function crawlLabel(score) {
+    if (score >= 90) return '● Excellent';
+    if (score >= 70) return '● Bon';
+    if (score >= 50) return '● Moyen';
+    if (score >= 30) return '● Difficile';
+    return '● Très difficile';
+  }
+  function crawlLabelColor(score) {
+    if (score >= 90) return '#059669';
+    if (score >= 70) return '#10b981';
+    if (score >= 50) return '#d97706';
+    if (score >= 30) return '#f59e0b';
+    return '#dc2626';
+  }
+
+  return `
+  <!-- Summary Stats -->
+  <div class="grid-2" style="grid-template-columns: repeat(4, 1fr); gap:16px; margin-bottom:20px">
+    <div class="card animate-in" style="padding:20px;text-align:center">
+      <div style="font-size:32px;font-weight:800;color:var(--accent-light)">${d.sources.length}</div>
+      <div style="font-size:12px;color:var(--text-muted);margin-top:4px">Sources actives</div>
+    </div>
+    <div class="card animate-in" style="padding:20px;text-align:center">
+      <div style="font-size:32px;font-weight:800;color:var(--accent-2)">${total}</div>
+      <div style="font-size:12px;color:var(--text-muted);margin-top:4px">Data points collectés</div>
+    </div>
+    <div class="card animate-in" style="padding:20px;text-align:center">
+      <div style="font-size:32px;font-weight:800;color:var(--accent-3)">${totalTags}</div>
+      <div style="font-size:12px;color:var(--text-muted);margin-top:4px">Champs récupérés</div>
+    </div>
+    <div class="card animate-in" style="padding:20px;text-align:center">
+      <div style="font-size:32px;font-weight:800;color:${avgColor}">${avgCrawl}<span style="font-size:16px;font-weight:400">/100</span></div>
+      <div style="font-size:12px;color:var(--text-muted);margin-top:4px">Crawlabilité moyenne</div>
+    </div>
+  </div>
+
+  <!-- Sources Table -->
+  <div class="card full animate-in">
     <div class="card-header">
-      <span class="card-title"><i class="fas fa-satellite-dish"></i> Sources de données (${d.sources.length})</span>
-      <span style="font-size:13px;color:var(--text-muted)">${total} data points collectés</span>
+      <span class="card-title"><i class="fas fa-satellite-dish"></i> Détail des sources (${d.sources.length})</span>
+      <span style="font-size:12px;color:var(--text-muted)">Dernière mise à jour : ${d.sources[0].lastScan}</span>
     </div>
     <div style="overflow-x:auto">
-      <table class="comp-table" style="min-width: 900px; margin-top: 10px;">
+      <table class="comp-table" style="min-width: 1000px; margin-top: 10px;">
         <thead><tr>
-          <th style="width:25%">Source & Type</th>
-          <th style="width:15%">Statut & Scan</th>
-          <th style="width:30%">Données récupérées</th>
-          <th style="width:10%;text-align:center">Points</th>
-          <th style="width:20%">Note de Crawlabilité</th>
+          <th style="width:22%">Source & Méthode</th>
+          <th style="width:10%">Statut</th>
+          <th style="width:33%">Données récupérées</th>
+          <th style="width:8%;text-align:center">Points</th>
+          <th style="width:27%">Note de Crawlabilité</th>
         </tr></thead>
         <tbody>
-          ${d.sources.map(s => {
+          ${d.sources.map((s, idx) => {
             const crawlColor = s.crawlabilityScore >= 80 ? '#059669' : s.crawlabilityScore >= 50 ? '#d97706' : '#dc2626';
-            const crawlBg = s.crawlabilityScore >= 80 ? '#ecfdf5' : s.crawlabilityScore >= 50 ? '#fffbeb' : '#fef2f2';
+            const labelTxt = crawlLabel(s.crawlabilityScore);
+            const labelCol = crawlLabelColor(s.crawlabilityScore);
             
-            return `<tr>
+            return `<tr style="vertical-align:top">
               <td>
-                <div style="display:flex;align-items:center;gap:12px">
-                  <div style="width:32px;height:32px;border-radius:var(--radius-sm);background:var(--bg-glass);display:grid;place-items:center;color:var(--accent-light);flex-shrink:0"><i class="${s.icon}"></i></div>
+                <div style="display:flex;align-items:flex-start;gap:12px">
+                  <div style="width:36px;height:36px;border-radius:var(--radius-sm);background:var(--bg-glass);display:grid;place-items:center;color:var(--accent-light);flex-shrink:0;font-size:15px"><i class="${s.icon}"></i></div>
                   <div>
-                    <div style="font-size:14px;font-weight:600">${s.name}</div>
-                    <div style="font-size:11px;color:var(--text-muted)">${s.url} • <span style="color:var(--text-secondary)">${s.type}</span></div>
+                    <div style="font-size:14px;font-weight:600;margin-bottom:2px">${s.name}</div>
+                    <div style="font-size:11px;color:var(--text-muted);margin-bottom:3px">${s.url}</div>
+                    <span style="font-size:10px;padding:2px 7px;border-radius:8px;background:var(--bg-glass);color:var(--text-secondary);border:1px solid var(--border)">${s.type}</span>
                   </div>
                 </div>
               </td>
               <td>
                 <div style="margin-bottom:4px">
-                  <span style="font-size:11px;padding:3px 8px;border-radius:10px;background:${s.status==='ok'?'#ecfdf5':'#fffbeb'};color:${s.status==='ok'?'#059669':'#d97706'}">${s.status==='ok'?'✓ Complet':'⚠ Partiel'}</span>
+                  <span style="font-size:11px;padding:3px 8px;border-radius:10px;background:${s.status==='ok'?'#ecfdf5':'#fffbeb'};color:${s.status==='ok'?'#059669':'#d97706'};font-weight:500">${s.status==='ok'?'✓ Complet':'⚠ Partiel'}</span>
                 </div>
-                <div style="font-size:11px;color:var(--text-muted)">${s.lastScan}</div>
+                <div style="font-size:11px;color:var(--text-muted);margin-top:6px"><i class="fas fa-clock" style="margin-right:3px;font-size:9px"></i>${s.lastScan}</div>
               </td>
               <td>
-                <div style="display:flex;flex-wrap:wrap;gap:4px">
-                  ${s.dataRecovered.map(tag => `<span style="font-size:10px;padding:2px 6px;background:var(--bg-glass);border:1px solid var(--border);border-radius:4px;color:var(--text-secondary)">${tag}</span>`).join('')}
+                <div style="display:flex;flex-wrap:wrap;gap:3px;max-height:120px;overflow-y:auto;padding-right:4px">
+                  ${s.dataRecovered.map(tag => `<span style="font-size:10px;padding:2px 6px;background:var(--bg-glass);border:1px solid var(--border);border-radius:4px;color:var(--text-secondary);white-space:nowrap">${tag}</span>`).join('')}
                 </div>
+                <div style="font-size:10px;color:var(--text-muted);margin-top:4px;font-style:italic">${s.dataRecovered.length} champs identifiés</div>
               </td>
-              <td style="text-align:center">
-                <span style="font-size:16px;font-weight:600;color:var(--accent-light)">${s.dataPoints}</span>
+              <td style="text-align:center;vertical-align:middle">
+                <div style="font-size:22px;font-weight:700;color:var(--accent-light)">${s.dataPoints}</div>
               </td>
               <td>
                 <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
-                  <div class="progress-bar" style="flex:1;height:6px;background:var(--bg-glass)"><div class="progress-fill" style="width:${s.crawlabilityScore}%;background:${crawlColor}"></div></div>
-                  <span style="font-size:12px;font-weight:600;color:${crawlColor}">${s.crawlabilityScore}/100</span>
+                  <div class="progress-bar" style="flex:1;height:7px;background:var(--bg-glass);border-radius:4px"><div class="progress-fill" style="width:${s.crawlabilityScore}%;background:${crawlColor};border-radius:4px"></div></div>
+                  <span style="font-size:13px;font-weight:700;color:${crawlColor};min-width:45px;text-align:right">${s.crawlabilityScore}/100</span>
                 </div>
-                <div style="font-size:10px;color:var(--text-muted);line-height:1.3" title="${s.crawlabilityNotes}">
+                <div style="margin-bottom:6px">
+                  <span style="font-size:10px;font-weight:600;color:${labelCol}">${labelTxt}</span>
+                </div>
+                <div style="font-size:10px;color:var(--text-muted);line-height:1.4;max-height:80px;overflow-y:auto;padding-right:4px">
                   ${s.crawlabilityNotes}
                 </div>
               </td>
@@ -224,6 +271,42 @@ function panelSources() {
           }).join('')}
         </tbody>
       </table>
+    </div>
+  </div>
+
+  <!-- Crawlability Legend -->
+  <div class="card full animate-in" style="margin-top:20px">
+    <div class="card-header">
+      <span class="card-title"><i class="fas fa-info-circle"></i> Méthodologie — Note de Crawlabilité</span>
+    </div>
+    <div style="font-size:12px;color:var(--text-secondary);line-height:1.6">
+      <p style="margin-bottom:12px">La <strong>Note de Crawlabilité</strong> évalue la facilité d'extraction automatisée des données depuis chaque source sur une échelle de 0 à 100. Elle est calculée selon les critères suivants :</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;margin-bottom:16px">
+        <div style="padding:10px 14px;background:var(--bg-glass);border-radius:var(--radius-sm);border-left:3px solid #059669">
+          <strong style="color:#059669">90–100 · Excellent</strong><br>
+          API publique gratuite ou protocole ouvert (DNS, WHOIS, CT Logs). Accès fiable et documenté.
+        </div>
+        <div style="padding:10px 14px;background:var(--bg-glass);border-radius:var(--radius-sm);border-left:3px solid #10b981">
+          <strong style="color:#10b981">70–89 · Bon</strong><br>
+          Site web à structure simple, pas de mesures anti-scraping agressives. Extraction standard possible.
+        </div>
+        <div style="padding:10px 14px;background:var(--bg-glass);border-radius:var(--radius-sm);border-left:3px solid #d97706">
+          <strong style="color:#d97706">50–69 · Moyen</strong><br>
+          Restrictions partielles (rate limiting, CGU), rendu JavaScript requis, ou API payante nécessaire.
+        </div>
+        <div style="padding:10px 14px;background:var(--bg-glass);border-radius:var(--radius-sm);border-left:3px solid #f59e0b">
+          <strong style="color:#f59e0b">30–49 · Difficile</strong><br>
+          Protections anti-bot actives (CAPTCHA, fingerprinting), API très restreinte, scraping instable.
+        </div>
+        <div style="padding:10px 14px;background:var(--bg-glass);border-radius:var(--radius-sm);border-left:3px solid #dc2626">
+          <strong style="color:#dc2626">0–29 · Très difficile</strong><br>
+          Scraping bloqué, login obligatoire, API dépréciée, PDFs non-OCR, protection juridique forte.
+        </div>
+      </div>
+      <p style="color:var(--text-muted);font-size:11px;font-style:italic">
+        <i class="fas fa-exclamation-triangle" style="color:#d97706;margin-right:4px"></i>
+        Note : Le scraping de données est soumis aux CGU de chaque plateforme, au RGPD (UE), et au droit des bases de données (directive 96/9/CE). Artemis privilégie les API officielles et les données publiques ouvertes.
+      </p>
     </div>
   </div>`;
 }

@@ -259,15 +259,278 @@ const COMPANY_DATA = {
 
   // ── Sources ──
   sources: [
-    { name: "Site web officiel", url: "luxsuum.lu", type: "Web Scraping", status: "ok", lastScan: "2026-04-29", dataPoints: 32, icon: "fas fa-globe", dataRecovered: ["Meta tags", "Mentions légales", "Contenu textuel", "Images"], crawlabilityScore: 85, crawlabilityNotes: "Structure HTML standard (Wix), pas de blocage agressif détecté." },
-    { name: "Google Business Profile", url: "google.com/maps", type: "API / Scraping", status: "ok", lastScan: "2026-04-29", dataPoints: 22, icon: "fab fa-google", dataRecovered: ["Note moyenne", "Avis clients", "Horaires", "Photos", "Catégorie"], crawlabilityScore: 40, crawlabilityNotes: "Scraping difficile (captchas, changements DOM), préférable via API payante." },
-    { name: "WHOIS luxsuum.lu", url: "whois.lu", type: "Base de données", status: "ok", lastScan: "2026-04-29", dataPoints: 8, icon: "fas fa-server", dataRecovered: ["Registrar", "Date de création", "Date d'expiration", "Serveurs DNS"], crawlabilityScore: 95, crawlabilityNotes: "Accès très facile via protocole WHOIS ou API Restena." },
-    { name: "RCS Luxembourg", url: "lbr.lu", type: "Registre public", status: "partial", lastScan: "2026-04-29", dataPoints: 7, icon: "fas fa-gavel", dataRecovered: ["N° RCS", "Raison sociale", "Siège social", "Gérant"], crawlabilityScore: 20, crawlabilityNotes: "Forte protection anti-bot, structure PDF complexe pour l'extraction." },
-    { name: "Editus.lu", url: "editus.lu", type: "Annuaire", status: "ok", lastScan: "2026-04-29", dataPoints: 14, icon: "fas fa-book", dataRecovered: ["Adresse", "Téléphone", "Secteur", "Avis locaux"], crawlabilityScore: 75, crawlabilityNotes: "Structure HTML sémantique, mais rate limiting potentiel sur les IP." },
-    { name: "Facebook", url: "facebook.com/luxsuum", type: "Réseau social", status: "ok", lastScan: "2026-04-29", dataPoints: 10, icon: "fab fa-facebook", dataRecovered: ["Abonnés", "Posts récents", "Contact"], crawlabilityScore: 30, crawlabilityNotes: "Scraping web bloqué sans compte, nécessite l'API Graph restreinte." },
-    { name: "Instagram", url: "instagram.com/luxsuum.lu", type: "Réseau social", status: "ok", lastScan: "2026-04-29", dataPoints: 8, icon: "fab fa-instagram", dataRecovered: ["Followers", "Engagement", "Hashtags"], crawlabilityScore: 25, crawlabilityNotes: "Forte protection, redirection login systématique, API stricte." },
-    { name: "Cloche d'Or Shopping", url: "clochedor-shopping.lu", type: "Web Scraping", status: "ok", lastScan: "2026-04-29", dataPoints: 4, icon: "fas fa-shopping-bag", dataRecovered: ["Emplacement", "Horaires", "Description courte"], crawlabilityScore: 90, crawlabilityNotes: "Site vitrine simple, extraction directe possible sans blocage." },
-    { name: "Recommend.lu", url: "recommend.lu", type: "Annuaire / Avis", status: "ok", lastScan: "2026-04-29", dataPoints: 6, icon: "fas fa-thumbs-up", dataRecovered: ["Profil existant", "Recommandations"], crawlabilityScore: 80, crawlabilityNotes: "DOM facilement parsable, pas de mesures anti-scraping identifiées." },
-    { name: "PageSpeed Insights", url: "pagespeed.web.dev", type: "API", status: "ok", lastScan: "2026-04-29", dataPoints: 12, icon: "fas fa-tachometer-alt", dataRecovered: ["Score SEO", "Chargement", "Core Web Vitals"], crawlabilityScore: 100, crawlabilityNotes: "API Google gratuite et documentée, intégration directe et fiable." }
+    {
+      name: "Site web officiel",
+      url: "luxsuum.lu",
+      type: "Web Scraping (Headless Browser)",
+      status: "ok",
+      lastScan: "2026-04-29",
+      dataPoints: 47,
+      icon: "fas fa-globe",
+      dataRecovered: [
+        "Title tag", "Meta description", "Meta keywords", "Canonical URL", "Robots directives",
+        "Structure Hn (H1–H6)", "Contenu textuel (toutes pages)", "Liens internes", "Liens externes",
+        "Images (URLs + alt text)", "Favicon", "Open Graph tags (og:title, og:image…)",
+        "Mentions légales", "CGV", "Politique de données", "Adresses physiques",
+        "Numéros de téléphone", "Email de contact", "Horaires d'ouverture",
+        "Liste des services + tarifs", "Formulaire de réservation (structure)",
+        "Liens réseaux sociaux (footer)", "Langues disponibles", "Hreflang tags",
+        "Schema.org (détection)", "Sitemap.xml (détection)", "Robots.txt (contenu)"
+      ],
+      crawlabilityScore: 72,
+      crawlabilityNotes: "Site Wix (SPA React) nécessitant un headless browser (Playwright/Puppeteer) pour le rendu JS. Le contenu est chargé dynamiquement côté client. Pas de robots.txt bloquant, pas de CAPTCHA. Les images sont servies depuis static.wixstatic.com. Sitemap.xml absent. Extraction possible mais lente (3-5s/page pour le rendu JS complet)."
+    },
+    {
+      name: "Google Business Profile",
+      url: "google.com/maps",
+      type: "API Places + Scraping",
+      status: "ok",
+      lastScan: "2026-04-29",
+      dataPoints: 38,
+      icon: "fab fa-google",
+      dataRecovered: [
+        "Nom commercial", "Adresse complète (rue, CP, ville, pays)", "Coordonnées GPS (lat/lng)",
+        "Numéro de téléphone", "Site web", "Catégorie principale", "Catégories secondaires",
+        "Note moyenne (rating)", "Nombre total d'avis", "Distribution des notes (1–5★)",
+        "Texte complet des avis", "Auteur + date de chaque avis", "Réponses du propriétaire",
+        "Horaires d'ouverture (par jour)", "Horaires spéciaux / jours fériés",
+        "Photos (URLs haute résolution)", "Nombre de photos",
+        "Statut de vérification (Claimed)", "Attributs (paiement, accessibilité, Wi-Fi…)",
+        "Popular Times (affluence par heure)", "Temps d'attente estimé",
+        "URL Google Maps (CID)", "Place ID"
+      ],
+      crawlabilityScore: 35,
+      crawlabilityNotes: "Scraping direct fortement protégé : CAPTCHAs, rate limiting IP, DOM obfusqué et changeant fréquemment. L'API Places (New) de Google fournit la plupart des données mais est payante (~$17/1000 requêtes Detail). L'API Q&A a été dépréciée en novembre 2025. Les avis complets nécessitent soit l'API soit un service tiers (Outscraper, SerpAPI). Score bas car dépendance forte à l'API payante."
+    },
+    {
+      name: "WHOIS luxsuum.lu",
+      url: "dns.lu",
+      type: "Protocole WHOIS / API",
+      status: "ok",
+      lastScan: "2026-04-29",
+      dataPoints: 12,
+      icon: "fas fa-server",
+      dataRecovered: [
+        "Nom de domaine", "Statut du domaine (actif/inactif)", "Type de registrant (personne morale)",
+        "Nom du registrant (personne morale)", "Adresse du registrant (pays)",
+        "Registrar (bureau d'enregistrement)", "Date de création du domaine",
+        "Date de dernière modification", "Date d'expiration",
+        "Serveurs DNS (NS1, NS2…)", "Statut DNSSEC (signé/non signé)",
+        "Contact technique (masqué RGPD)"
+      ],
+      crawlabilityScore: 92,
+      crawlabilityNotes: "Registre .lu opéré par la Fondation Restena (dns.lu). Accès gratuit via protocole WHOIS (port 43) ou interface web. Données des personnes morales publiques (nom, adresse). Contacts individuels masqués par défaut (conformité RGPD). Demande de divulgation possible via formulaire dns.lu pour cas légitimes. Aucune limitation de débit constatée pour des requêtes raisonnables."
+    },
+    {
+      name: "RCS Luxembourg (LBR)",
+      url: "lbr.lu",
+      type: "Registre public",
+      status: "partial",
+      lastScan: "2026-04-29",
+      dataPoints: 18,
+      icon: "fas fa-gavel",
+      dataRecovered: [
+        "N° RCS (B234567)", "Raison sociale complète", "Forme juridique (S.à r.l.)",
+        "Siège social (adresse)", "Date d'immatriculation", "Statut (active/radiée)",
+        "Objet social (description activité)", "Capital social",
+        "Gérant(s) / Administrateur(s)", "Associé(s) (si publié)",
+        "Publications au RESA (actes constitutifs, modifications)",
+        "Comptes annuels (PDF, si déposés)", "Statuts (PDF)",
+        "Extrait RCS (payant, certifié)", "Code NACE",
+        "N° TVA intracommunautaire", "Date de clôture exercice",
+        "Historique des modifications"
+      ],
+      crawlabilityScore: 15,
+      crawlabilityNotes: "Le portail LBR (lbr.lu) est conçu pour la consultation manuelle uniquement. Forte protection anti-bot (WAF, rate limiting strict, sessions authentifiées). Les documents déposés (statuts, comptes annuels) sont en PDF non-OCR, rendant l'extraction automatique très difficile. La consultation de base est gratuite, mais les extraits certifiés sont payants. Le RBE (Registre des Bénéficiaires Effectifs) n'est plus accessible au public (arrêt CJUE). Scraping automatisé explicitement interdit par les CGU."
+    },
+    {
+      name: "Editus.lu",
+      url: "editus.lu",
+      type: "Annuaire professionnel",
+      status: "ok",
+      lastScan: "2026-04-29",
+      dataPoints: 21,
+      icon: "fas fa-book",
+      dataRecovered: [
+        "Nom commercial", "Raison sociale", "Adresse complète (formatée)",
+        "Numéro(s) de téléphone", "Numéro de fax", "Email de contact",
+        "Site web", "Secteur d'activité / catégorie", "Sous-catégories",
+        "Description de l'entreprise", "Horaires d'ouverture",
+        "Coordonnées GPS", "Avis clients Editus (note + texte)",
+        "Nombre d'avis", "Photos de l'établissement",
+        "Logo entreprise", "Liens réseaux sociaux",
+        "Marques / enseignes associées", "N° TVA",
+        "Certifications / labels", "Zone de chalandise"
+      ],
+      crawlabilityScore: 55,
+      crawlabilityNotes: "Structure HTML sémantique et bien organisée (données structurées Schema.org LocalBusiness). Cependant, Editus.lu applique un rate limiting IP, et le scraping automatisé est interdit par les CGU et protégé par le droit européen des bases de données (directive 96/9/CE). Les données professionnelles restent soumises au RGPD. Un partenariat API officiel via Editus/POST Luxembourg est la voie recommandée pour l'accès programmatique."
+    },
+    {
+      name: "Facebook Page",
+      url: "facebook.com/luxsuum",
+      type: "API Graph (restreinte)",
+      status: "ok",
+      lastScan: "2026-04-29",
+      dataPoints: 16,
+      icon: "fab fa-facebook",
+      dataRecovered: [
+        "Nom de la page", "Catégorie de la page", "Nombre d'abonnés (followers)",
+        "Nombre de likes de la page", "Photo de profil (URL)", "Photo de couverture (URL)",
+        "Description / À propos", "Adresse (si renseignée)", "Téléphone (si public)",
+        "Site web", "Email (si public)", "Horaires d'ouverture",
+        "Derniers posts publics (texte, images, date)", "Nombre de réactions/commentaires/partages par post",
+        "Évaluations / recommandations", "Date de création de la page"
+      ],
+      crawlabilityScore: 25,
+      crawlabilityNotes: "Scraping web direct bloqué : redirection login systématique, détection d'automatisation (TLS fingerprinting, behavioral analysis). L'API Graph v21.0 reste disponible mais avec des restrictions sévères post-Cambridge Analytica : accès limité aux pages que vous administrez. Les données publiques (nombre d'abonnés, posts publics) sont visibles en navigateur mais difficilement extractibles à grande échelle. Services tiers (Apify, PhantomBuster) offrent des solutions mais avec risque de ban."
+    },
+    {
+      name: "Instagram",
+      url: "instagram.com/luxsuum.lu",
+      type: "Scraping + API Graph IG",
+      status: "partial",
+      lastScan: "2026-04-29",
+      dataPoints: 14,
+      icon: "fab fa-instagram",
+      dataRecovered: [
+        "Nom d'utilisateur (@luxsuum.lu)", "Nom affiché", "Bio (description)",
+        "Lien en bio (URL)", "Nombre de followers", "Nombre d'abonnements (following)",
+        "Nombre de publications", "Photo de profil (URL)",
+        "Compte vérifié (badge bleu)", "Compte professionnel/créateur",
+        "Posts récents (images, captions, dates)", "Nombre de likes par post",
+        "Nombre de commentaires par post", "Hashtags utilisés (par post)"
+      ],
+      crawlabilityScore: 18,
+      crawlabilityNotes: "L'API Basic Display a été définitivement supprimée le 4 décembre 2024. Seule l'API Instagram Graph (via Facebook Business) reste disponible, limitée aux comptes professionnels liés. Le scraping web est très protégé : redirection login obligatoire, détection anti-bot avancée (fingerprinting JS), et IP blocking agressif. Les données publiques de profil (bio, followers, posts) sont techniquement visibles mais nécessitent des solutions de contournement fragiles. Score très bas car extraction non fiable."
+    },
+    {
+      name: "Cloche d'Or Shopping",
+      url: "clochedor-shopping.lu",
+      type: "Web Scraping",
+      status: "ok",
+      lastScan: "2026-04-29",
+      dataPoints: 7,
+      icon: "fas fa-shopping-bag",
+      dataRecovered: [
+        "Nom de la boutique / enseigne", "Emplacement dans le centre (étage, zone)",
+        "Horaires d'ouverture du magasin", "Horaires du centre commercial",
+        "Description courte de l'activité", "Catégorie commerciale",
+        "Coordonnées (téléphone si listé)"
+      ],
+      crawlabilityScore: 88,
+      crawlabilityNotes: "Site vitrine statique avec structure HTML simple et prévisible. Pas de JavaScript lourd, pas de mesures anti-scraping détectées. Données facilement extractibles par un parser HTML basique (BeautifulSoup, Cheerio). Pas de robots.txt restrictif. Les données sont mises à jour manuellement par la gestion du centre, donc fraîcheur variable."
+    },
+    {
+      name: "Recommend.lu",
+      url: "recommend.lu",
+      type: "Annuaire / Avis",
+      status: "ok",
+      lastScan: "2026-04-29",
+      dataPoints: 9,
+      icon: "fas fa-thumbs-up",
+      dataRecovered: [
+        "Profil entreprise (existant/non)", "Nom commercial", "Catégorie d'activité",
+        "Adresse", "Nombre de recommandations", "Texte des recommandations",
+        "Note globale", "Auteur des recommandations", "Date des recommandations"
+      ],
+      crawlabilityScore: 78,
+      crawlabilityNotes: "DOM facilement parsable avec une structure HTML classique côté serveur (SSR). Pas de mesures anti-scraping agressives identifiées (pas de CAPTCHA, pas de rate limiting strict). Le robots.txt est permissif. Toutefois, le volume de données est limité pour les petites entreprises. Les données sont publiques mais les CGU du site doivent être vérifiées avant extraction automatisée."
+    },
+    {
+      name: "PageSpeed Insights",
+      url: "pagespeed.web.dev",
+      type: "API Google (gratuite)",
+      status: "ok",
+      lastScan: "2026-04-29",
+      dataPoints: 24,
+      icon: "fas fa-tachometer-alt",
+      dataRecovered: [
+        "Score Performance (0–100)", "Score Accessibilité", "Score Bonnes Pratiques", "Score SEO",
+        "First Contentful Paint (FCP)", "Largest Contentful Paint (LCP)",
+        "Cumulative Layout Shift (CLS)", "Total Blocking Time (TBT)",
+        "Speed Index", "Time to Interactive (TTI)", "Interaction to Next Paint (INP)",
+        "Time to First Byte (TTFB)",
+        "Opportunités d'optimisation (liste détaillée)", "Diagnostics (liste détaillée)",
+        "Poids total de la page (Ko)", "Nombre de requêtes HTTP",
+        "Ressources bloquant le rendu", "Images non optimisées (liste)",
+        "JavaScript inutilisé (Ko)", "CSS inutilisé (Ko)",
+        "Stratégie Mobile", "Stratégie Desktop",
+        "Données terrain CrUX (si disponibles)", "Screenshot du rendu"
+      ],
+      crawlabilityScore: 98,
+      crawlabilityNotes: "API Google officielle, gratuite et parfaitement documentée. Nécessite une clé API (Google Cloud Console). Limite : 25 000 requêtes/jour gratuites (stratégie mobile/desktop comptées séparément). Powered by Lighthouse v13.x. Les données terrain (CrUX) ne sont disponibles que pour les sites à fort trafic — luxsuum.lu n'en dispose probablement pas. Intégration directe via REST API, réponse JSON complète en 10-30s."
+    },
+    {
+      name: "BuiltWith / Wappalyzer",
+      url: "builtwith.com",
+      type: "API / Extension",
+      status: "ok",
+      lastScan: "2026-04-29",
+      dataPoints: 18,
+      icon: "fas fa-layer-group",
+      dataRecovered: [
+        "CMS / Plateforme (Wix)", "Framework JS (React)", "Serveur web (Cloudflare)",
+        "CDN utilisé (Cloudflare CDN)", "Analytics (Google Analytics GA4)",
+        "Tag Manager (Google Tag Manager)", "Pixel publicitaire (Facebook Pixel)",
+        "Outils de réservation (Wix Bookings)", "Système de paiement (si détecté)",
+        "Hébergeur / infrastructure", "Certificat SSL (émetteur, validité)",
+        "Fonts web utilisées", "Librairies JavaScript",
+        "Widgets / plugins tiers", "Technologie email (provider)",
+        "Version du CMS (si exposée)", "Score de dépenses technologiques",
+        "Historique des changements technologiques"
+      ],
+      crawlabilityScore: 90,
+      crawlabilityNotes: "BuiltWith : base de données massive, API payante (Enterprise), fournit l'historique des technologies. Wappalyzer : détection temps réel via analyse des headers HTTP, cookies, signatures JS et méta-tags. Extension navigateur gratuite, API payante pour le volume. Détection passive et non intrusive — aucun risque de blocage. Score élevé car les deux outils fonctionnent sans interaction avec le site cible."
+    },
+    {
+      name: "SSL / CT Logs (crt.sh)",
+      url: "crt.sh",
+      type: "Base de données publique",
+      status: "ok",
+      lastScan: "2026-04-29",
+      dataPoints: 10,
+      icon: "fas fa-lock",
+      dataRecovered: [
+        "Certificat SSL actuel (émetteur, validité)", "Date d'émission du certificat",
+        "Date d'expiration du certificat", "Algorithme de signature",
+        "Sous-domaines découverts (via SAN)", "Historique des certificats émis",
+        "Autorité de certification (CA)", "Empreinte SHA-256",
+        "Statut DNSSEC", "Chaîne de confiance complète"
+      ],
+      crawlabilityScore: 95,
+      crawlabilityNotes: "Les Certificate Transparency Logs sont publics par design (RFC 6962). crt.sh offre une interface web, une API JSON et un accès SQL direct (PostgreSQL, port 5432, user guest). Aucune limitation pour des requêtes raisonnables. Données complètes et vérifiables pour tout domaine. Très utile pour découvrir des sous-domaines et vérifier l'infrastructure SSL."
+    },
+    {
+      name: "DNS / MX Records",
+      url: "dns.google",
+      type: "Protocole DNS",
+      status: "ok",
+      lastScan: "2026-04-29",
+      dataPoints: 8,
+      icon: "fas fa-network-wired",
+      dataRecovered: [
+        "Enregistrements A (IPv4)", "Enregistrements AAAA (IPv6)",
+        "Enregistrements MX (serveur mail)", "Enregistrements TXT (SPF, DKIM, DMARC)",
+        "Enregistrements CNAME", "Enregistrements NS (serveurs de noms)",
+        "TTL des enregistrements", "Provider email identifié (via MX)"
+      ],
+      crawlabilityScore: 100,
+      crawlabilityNotes: "Protocole DNS ouvert et public, aucune restriction d'accès. Requêtes via dig, nslookup, ou API DoH (dns.google, Cloudflare 1.1.1.1). Les enregistrements SPF/DKIM/DMARC révèlent le provider email. Les enregistrements MX pour luxsuum.lu pointent vers Wix (mx*.wixdns.net), confirmant l'utilisation de Wix pour l'email. Extraction instantanée et gratuite."
+    },
+    {
+      name: "Waze",
+      url: "waze.com",
+      type: "Application / Scraping",
+      status: "ok",
+      lastScan: "2026-04-29",
+      dataPoints: 6,
+      icon: "fas fa-map-marked-alt",
+      dataRecovered: [
+        "Point d'intérêt listé (oui/non)", "Nom affiché", "Adresse",
+        "Coordonnées GPS", "Catégorie commerciale", "Lien de navigation"
+      ],
+      crawlabilityScore: 30,
+      crawlabilityNotes: "Waze (propriété Google) ne propose pas d'API publique pour l'extraction de données commerciales. Les informations sont accessibles uniquement via l'application mobile ou l'éditeur de carte. Le scraping web est techniquement difficile (app mobile native, WebGL pour la carte web). Les données de base (présence, nom, localisation) peuvent être vérifiées manuellement."
+    }
   ]
 };
