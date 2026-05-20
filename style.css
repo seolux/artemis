@@ -257,10 +257,43 @@ body{font-family:var(--font-sans);background:var(--bg-secondary);color:var(--tex
 
 .hero-visual { flex: 0.8; display: flex; justify-content: center; }
 .visual-card-wrapper { position: relative; width: 100%; max-width: 340px; height: 260px; }
-.visual-card { background: #ffffff; border: 1px solid rgba(15,23,42,0.08); border-radius: var(--radius-lg); padding: 20px; box-shadow: 0 10px 30px -5px rgba(15,23,42,0.08), inset 0 1px 0 rgba(255,255,255,0.7); position: absolute; transition: var(--transition); }
-.visual-card:hover { transform: scale(1.05) translateY(-5px); z-index: 10; }
+.visual-card { background: #ffffff; border: 1px solid rgba(15,23,42,0.08); border-radius: var(--radius-lg); padding: 20px; box-shadow: 0 10px 30px -5px rgba(15,23,42,0.08), inset 0 1px 0 rgba(255,255,255,0.7); position: absolute; transition: box-shadow var(--transition); transform-style: preserve-3d; }
+.visual-card:hover { z-index: 10; box-shadow: 0 20px 40px -10px rgba(15,23,42,0.15); }
 .visual-card.cert { top: 0; left: 0; width: 280px; z-index: 2; }
 .visual-card.stats { bottom: 0; right: 0; width: 200px; z-index: 1; background: radial-gradient(circle at top right, #f8fafc, #ffffff); }
+.visual-card .vc-badge,
+.visual-card .vc-title,
+.visual-card .vc-desc,
+.visual-card .vc-stats,
+.visual-card .vs-title,
+.visual-card .vs-value,
+.visual-card .vs-trend {
+  transform: translateZ(25px);
+}
+
+/* ─── Cursor Follower ─── */
+.cursor-follower {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 18px;
+  height: 18px;
+  background: rgba(37, 99, 235, 0.15);
+  border: 1.5px solid rgba(37, 99, 235, 0.4);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1), height 0.3s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+.cursor-follower.hovered {
+  width: 36px;
+  height: 36px;
+  background: rgba(37, 99, 235, 0.05);
+  border-color: rgba(37, 99, 235, 0.8);
+  box-shadow: 0 0 15px rgba(37, 99, 235, 0.25);
+}
 .vc-badge { font-size: 10px; font-weight: 700; color: var(--accent-light); text-transform: uppercase; margin-bottom: 8px; }
 .vc-title { font-size: 18px; font-weight: 800; color: var(--text-primary); }
 .vc-desc { font-size: 12px; color: var(--text-muted); margin-bottom: 16px; }
