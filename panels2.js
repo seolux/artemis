@@ -13,7 +13,7 @@ function panelReputation() {
       <ul class="data-list">
         ${dataRow('Catégorie principale', gb.category)}
         ${dataRow('Catégories secondaires', gb.secondaryCategories.join(', '))}
-        ${dataRow('Vérifié', gb.verified ? '<span style="color:#059669">✓ Oui</span>' : '✗ Non')}
+        ${dataRow('Vérifié', gb.verified ? '<span style="color:#059669"><i class="fas fa-check-circle"></i> Oui</span>' : '<span style="color:#dc2626"><i class="fas fa-times-circle"></i> Non</span>')}
         ${dataRow('Photos', gb.photos)}
         ${dataRow('Taux de réponse', gb.responseRate)}
         ${dataRow('Temps de réponse', gb.avgResponseTime)}
@@ -127,8 +127,8 @@ function panelCompetitors() {
           <div style="text-align:center;flex:1;padding:8px;background:var(--bg-glass);border-radius:var(--radius-sm)"><div style="font-size:18px;font-weight:700;color:${scoreColor(c.seoScore)}">${c.seoScore}</div><div style="font-size:11px;color:var(--text-muted)">SEO</div></div>
           <div style="text-align:center;flex:1;padding:8px;background:var(--bg-glass);border-radius:var(--radius-sm)"><div style="font-size:18px;font-weight:700;color:${scoreColor(c.geoScore)}">${c.geoScore}</div><div style="font-size:11px;color:var(--text-muted)">GEO</div></div>
         </div>
-        <div style="font-size:12px;margin-bottom:8px"><strong style="color:#059669">+ Forces :</strong> <span style="color:var(--text-secondary)">${c.strengths.join(', ')}</span></div>
-        <div style="font-size:12px"><strong style="color:#dc2626">− Faiblesses :</strong> <span style="color:var(--text-secondary)">${c.weaknesses.join(', ')}</span></div>
+        <div style="font-size:12px;margin-bottom:8px"><span style="color:#059669;font-weight:700"><i class="fas fa-plus-circle" style="font-size:10px;margin-right:4px"></i>Forces :</span> <span style="color:var(--text-secondary)">${c.strengths.join(', ')}</span></div>
+        <div style="font-size:12px"><span style="color:#dc2626;font-weight:700"><i class="fas fa-minus-circle" style="font-size:10px;margin-right:4px"></i>Faiblesses :</span> <span style="color:var(--text-secondary)">${c.weaknesses.join(', ')}</span></div>
       </div>`).join('')}
   </div>`;
 }
@@ -242,7 +242,7 @@ function panelSources() {
               </td>
               <td>
                 <div style="margin-bottom:4px">
-                  <span style="font-size:11px;padding:3px 8px;border-radius:10px;background:${s.status==='ok'?'#ecfdf5':'#fffbeb'};color:${s.status==='ok'?'#059669':'#d97706'};font-weight:500">${s.status==='ok'?'✓ Complet':'⚠ Partiel'}</span>
+                  <span style="font-size:11px;padding:3px 8px;border-radius:10px;background:${s.status==='ok'?'#ecfdf5':'#fffbeb'};color:${s.status==='ok'?'#059669':'#d97706'};font-weight:500">${s.status==='ok'?'<i class="fas fa-check-circle" style="margin-right:3px"></i>Complet':'<i class="fas fa-exclamation-triangle" style="margin-right:3px"></i>Partiel'}</span>
                 </div>
                 <div style="font-size:11px;color:var(--text-muted);margin-top:6px"><i class="fas fa-clock" style="margin-right:3px;font-size:9px"></i>${s.lastScan}</div>
               </td>

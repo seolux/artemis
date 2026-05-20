@@ -104,9 +104,7 @@ function panelCertification() {
               <div style="font-size:12px;color:var(--text-muted);margin-top:2px">${cr.detail} <span style="opacity:0.6">— ${cr.source}</span></div>
             </div>
           </li>`).join('')}
-      </ul>
-    </div>
-    <div class="card full animate-in">
+     <div class="card full animate-in">
       <div class="card-header"><span class="card-title"><i class="fas fa-info-circle"></i> À propos de la Certification Artemis</span></div>
       <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px">
         ${c.levels.filter(l=>l.id!=='none').map(l => `
@@ -117,7 +115,7 @@ function panelCertification() {
           </div>`).join('')}
       </div>
       <div style="margin-top:16px;font-size:13px;color:var(--text-secondary);line-height:1.7;padding:16px;background:var(--bg-glass);border-radius:var(--radius-md)">
-        <strong style="color:var(--text-primary)">🛡️ La certification Artemis</strong> garantit que les données d'une entreprise ont été vérifiées et croisées entre plusieurs sources officielles. Elle évalue l'identité juridique, la cohérence des informations publiques (NAP), la conformité légale du site web, et la qualité de la présence digitale. Plus le score est élevé, plus les données sont fiables et complètes.
+        <i class="fas fa-shield-alt" style="color:var(--accent);margin-right:6px"></i><strong style="color:var(--text-primary)">La certification Artemis</strong> garantit que les données d'une entreprise ont été vérifiées et croisées entre plusieurs sources officielles. Elle évalue l'identité juridique, la cohérence des informations publiques (NAP), la conformité légale du site web, et la qualité de la présence digitale. Plus le score est élevé, plus les données sont fiables et complètes.
       </div>
     </div>
   </div>`;
@@ -140,6 +138,7 @@ function renderAuditPanel(config, colorVar) {
           </div>`).join('')}
       </div>
     </div>
+
     <div class="card animate-in">
       ${config.categories.map(cat => `
         <div class="audit-category">
@@ -151,7 +150,7 @@ function renderAuditPanel(config, colorVar) {
             <div class="audit-item">
               <div class="status-dot ${it.status}"></div>
               <span class="ai-label">${it.label}</span>
-              <span class="ai-value">${typeof it.value === 'boolean' ? (it.value ? '✓' : '✗') : it.value}</span>
+              <span class="ai-value">${typeof it.value === 'boolean' ? (it.value ? '<i class="fas fa-check" style="color:#059669"></i>' : '<i class="fas fa-times" style="color:#dc2626"></i>') : it.value}</span>
             </div>`).join('')}
         </div>`).join('')}
     </div>
@@ -168,9 +167,9 @@ function panelDigital() {
       <div class="card-header"><span class="card-title"><i class="fas fa-globe"></i> Site Web</span><span class="source-tag web">Web</span></div>
       <ul class="data-list">
         ${dataRow('Plateforme', w.platform)}
-        ${dataRow('SSL', w.ssl ? '<span style="color:#059669">✓ Actif</span>' : '<span style="color:#dc2626">✗ Inactif</span>')}
+        ${dataRow('SSL', w.ssl ? '<span style="color:#059669"><i class="fas fa-check" style="margin-right:4px"></i> Actif</span>' : '<span style="color:#dc2626"><i class="fas fa-times" style="margin-right:4px"></i> Inactif</span>')}
         ${dataRow('Expiration SSL', w.sslExpiry)}
-        ${dataRow('Responsive', w.responsive ? '✓ Oui' : '✗ Non')}
+        ${dataRow('Responsive', w.responsive ? '<i class="fas fa-check" style="color:#059669;margin-right:4px"></i> Oui' : '<i class="fas fa-times" style="color:#dc2626;margin-right:4px"></i> Non')}
         ${dataRow('Langues', w.languages.join(', '))}
         ${dataRow('Temps de chargement', w.loadTime)}
         ${dataRow('Score Mobile', `<span style="color:${scoreColor(w.mobileScore)}">${w.mobileScore}/100</span>`)}

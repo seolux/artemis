@@ -34,35 +34,65 @@
   <main class="site-main">
     
     <section class="hero-section">
-      <div class="hero-badge"><i class="fas fa-shield-check"></i> Standard officiel de confiance numérique</div>
-      <h1 class="hero-title">L'Intelligence Économique<br>du Luxembourg.</h1>
-      <p class="hero-subtitle">Recherchez une entreprise, vérifiez sa réputation et son score d'influence. Artemis centralise et certifie les données de toutes les entreprises luxembourgeoises.</p>
-      
-      <div class="mini-audit-box">
-        <input type="text" placeholder="Entrez le nom ou le site web d'une entreprise (ex: luxsuum.lu)">
-        <a href="directory.html"><button>Lancer l'audit express <i class="fas fa-arrow-right"></i></button></a>
+      <div class="hero-content">
+        <div class="hero-badge"><i class="fas fa-shield-alt"></i> Standard officiel de confiance numérique</div>
+        <h1 class="hero-title">L'Intelligence Économique<br>du Luxembourg.</h1>
+        <p class="hero-subtitle">Recherchez une entreprise, vérifiez sa réputation et son score d'influence. Artemis centralise et certifie les données de toutes les entreprises luxembourgeoises.</p>
+        
+        <div class="mini-audit-box">
+          <input type="text" placeholder="Entrez le nom ou le site web d'une entreprise (ex: luxsuum.lu)">
+          <a href="directory.html"><button>Lancer l'audit express <i class="fas fa-arrow-right"></i></button></a>
+        </div>
+        <div style="font-size:12px;color:var(--text-muted);margin-top:12px;">Déjà 14 500+ entreprises analysées et notées.</div>
       </div>
-      <div style="font-size:12px;color:var(--text-muted);margin-top:12px;">Déjà 14 500+ entreprises analysées et notées.</div>
+      
+      <div class="hero-visual">
+        <div class="visual-card-wrapper">
+          <div class="visual-card cert">
+            <div class="vc-badge"><i class="fas fa-certificate"></i> Silver Certified</div>
+            <div class="vc-title">Luxsuum S.à r.l.</div>
+            <div class="vc-desc">Services automobiles</div>
+            <div class="vc-stats">
+              <div class="vc-stat"><span>78%</span><span>Complétude</span></div>
+              <div class="vc-stat"><span>65%</span><span>Digital</span></div>
+              <div class="vc-stat"><span>82%</span><span>Réputation</span></div>
+            </div>
+          </div>
+          <div class="visual-card stats">
+            <div class="vs-title">Points collectés</div>
+            <div class="vs-value">3 124</div>
+            <div class="vs-trend"><i class="fas fa-arrow-trend-up"></i> +12% scans</div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <section class="features-grid">
-      <div class="feature-card">
+      <div class="feature-card featured">
         <div class="feature-icon"><i class="fas fa-users"></i></div>
-        <h3 class="feature-title">Pour les Citoyens</h3>
-        <p class="feature-desc">Ne vous fiez plus au hasard. Vérifiez la réputation réelle, les notes agrégées et la conformité légale (RCS) de n'importe quel artisan ou prestataire avant de vous engager.</p>
-        <a href="directory.html" style="display:inline-block;margin-top:16px;color:var(--accent);font-weight:600;font-size:13px;text-decoration:none">Rechercher une entreprise <i class="fas fa-angle-right"></i></a>
+        <div>
+          <h3 class="feature-title">Pour les Citoyens</h3>
+          <p class="feature-desc">Ne vous fiez plus au hasard. Vérifiez la réputation réelle, les notes agrégées et la conformité légale (RCS) de n'importe quel artisan ou prestataire avant de vous engager. Artemis agrège l'ensemble des registres publics pour vous proposer une vision à 360° en toute transparence.</p>
+          <a href="directory.html" class="feature-link">Rechercher une entreprise <i class="fas fa-angle-right"></i></a>
+        </div>
       </div>
-      <div class="feature-card">
-        <div class="feature-icon" style="background:#fffbeb;color:#d97706"><i class="fas fa-crown"></i></div>
-        <h3 class="feature-title">Pour les Entreprises</h3>
-        <p class="feature-desc">Le Trust Score Artemis est le nouveau standard. Obtenez votre certification Platinum, analysez vos concurrents en temps réel et dominez le référencement local.</p>
-        <a href="marketing-b2b.html" style="display:inline-block;margin-top:16px;color:#d97706;font-weight:600;font-size:13px;text-decoration:none">Découvrir la certification <i class="fas fa-angle-right"></i></a>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon" style="background:#ecfdf5;color:#059669"><i class="fas fa-code"></i></div>
-        <h3 class="feature-title">Pour les Développeurs</h3>
-        <p class="feature-desc">Accédez à notre API REST v2 et à nos serveurs MCP pour intégrer la base de données qualifiée d'Editus directement dans vos applications métiers et IA.</p>
-        <a href="dashboard.html" style="display:inline-block;margin-top:16px;color:#059669;font-weight:600;font-size:13px;text-decoration:none">Documentation API <i class="fas fa-angle-right"></i></a>
+      <div class="feature-card-col">
+        <div class="feature-card">
+          <div class="feature-icon" style="background:#fffbeb;color:#d97706"><i class="fas fa-crown"></i></div>
+          <div>
+            <h3 class="feature-title">Pour les Entreprises</h3>
+            <p class="feature-desc">Le Trust Score Artemis est le nouveau standard. Obtenez votre certification Platinum, analysez vos concurrents en temps réel.</p>
+            <a href="marketing-b2b.html" class="feature-link accent-gold">Découvrir la certification <i class="fas fa-angle-right"></i></a>
+          </div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon" style="background:#ecfdf5;color:#059669"><i class="fas fa-code"></i></div>
+          <div>
+            <h3 class="feature-title">Pour les Développeurs</h3>
+            <p class="feature-desc">Accédez à notre API REST v2 et à nos serveurs MCP pour intégrer la base de données qualifiée d'Editus.</p>
+            <a href="dashboard.html" class="feature-link accent-green">Documentation API <i class="fas fa-angle-right"></i></a>
+          </div>
+        </div>
       </div>
     </section>
 
