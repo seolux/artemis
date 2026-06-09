@@ -104,7 +104,9 @@ function panelCertification() {
               <div style="font-size:12px;color:var(--text-muted);margin-top:2px">${cr.detail} <span style="opacity:0.6">— ${cr.source}</span></div>
             </div>
           </li>`).join('')}
-     <div class="card full animate-in">
+      </ul>
+    </div>
+    <div class="card full animate-in">
       <div class="card-header"><span class="card-title"><i class="fas fa-info-circle"></i> À propos de la Certification Artemis</span></div>
       <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px">
         ${c.levels.filter(l=>l.id!=='none').map(l => `
