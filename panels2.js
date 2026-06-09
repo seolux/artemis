@@ -1,4 +1,4 @@
-// Artemis — Panel Renderers (Part 2: Reputation, Social, Legal, Competitors, Sources)
+// moon — Panel Renderers (Part 2: Reputation, Social, Legal, Competitors, Sources)
 
 function panelReputation() {
   const d = COMPANY_DATA, gb = d.googleBusiness;
@@ -305,7 +305,7 @@ function panelSources() {
       </div>
       <p style="color:var(--text-muted);font-size:11px;font-style:italic">
         <i class="fas fa-exclamation-triangle" style="color:#d97706;margin-right:4px"></i>
-        Note : Le scraping de données est soumis aux CGU de chaque plateforme, au RGPD (UE), et au droit des bases de données (directive 96/9/CE). Artemis privilégie les API officielles et les données publiques ouvertes.
+        Note : Le scraping de données est soumis aux CGU de chaque plateforme, au RGPD (UE), et au droit des bases de données (directive 96/9/CE). moon privilégie les API officielles et les données publiques ouvertes.
       </p>
     </div>
   </div>`;
@@ -318,7 +318,7 @@ function panelAPI() {
       <span class="cert-badge platinum"><i class="fas fa-crown"></i> Enterprise Only</span>
     </div>
     <div style="font-size:13px;color:var(--text-secondary);margin-bottom:24px">
-      Artemis by Editus.lu fournit un accès programmatique complet aux données d'intelligence d'entreprise pour intégrer ces informations directement dans vos CRM, ERP ou assistants IA.
+      moon by Editus.lu fournit un accès programmatique complet aux données d'intelligence d'entreprise pour intégrer ces informations directement dans vos CRM, ERP ou assistants IA.
     </div>
 
     <div class="grid-2">
@@ -330,7 +330,7 @@ function panelAPI() {
         </div>
         <div style="font-size:12px;color:var(--text-secondary);margin-bottom:12px">Recherchez des entreprises, obtenez les scores SEO/GEO et récupérez les données légales via notre API REST haute disponibilité.</div>
         <div style="background:#1e1e1e;color:#d4d4d4;padding:12px;border-radius:6px;font-family:var(--font-mono);font-size:11px;overflow-x:auto;line-height:1.5">
-<span style="color:#569cd6">curl</span> -X GET "https://api.artemis.lu/v2/companies/LUXSUUM" \\
+<span style="color:#569cd6">curl</span> -X GET "https://api.moon.lu/v2/companies/LUXSUUM" \\
      -H <span style="color:#ce9178">"Authorization: Bearer YOUR_API_KEY"</span>
         </div>
         <button class="btn-outline" style="margin-top:16px;width:100%;justify-content:center">Documentation API</button>
@@ -342,9 +342,9 @@ function panelAPI() {
           <div style="width:36px;height:36px;border-radius:8px;background:#ecfdf5;color:#059669;display:grid;place-items:center;font-size:16px"><i class="fas fa-microchip"></i></div>
           <div><div style="font-size:14px;font-weight:600">Model Context Protocol</div><div style="font-size:11px;color:var(--text-muted)">Intégration LLM (Claude, ChatGPT...)</div></div>
         </div>
-        <div style="font-size:12px;color:var(--text-secondary);margin-bottom:12px">Permettez à vos agents IA de requêter Artemis pour rédiger des analyses concurrentielles ou valider des prospects en langage naturel.</div>
+        <div style="font-size:12px;color:var(--text-secondary);margin-bottom:12px">Permettez à vos agents IA de requêter moon pour rédiger des analyses concurrentielles ou valider des prospects en langage naturel.</div>
         <div style="background:#1e1e1e;color:#d4d4d4;padding:12px;border-radius:6px;font-family:var(--font-mono);font-size:11px;overflow-x:auto;line-height:1.5">
-<span style="color:#dcdcaa">call</span>:<span style="color:#9cdcfe">artemis_api:get_company</span> {
+<span style="color:#dcdcaa">call</span>:<span style="color:#9cdcfe">moon_api:get_company</span> {
   <span style="color:#ce9178">"rcs"</span>: <span style="color:#b5cea8">"B234567"</span>,
   <span style="color:#ce9178">"include_competitors"</span>: <span style="color:#569cd6">true</span>
 }

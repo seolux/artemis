@@ -1,4 +1,4 @@
-// Artemis — Panel Renderers (Part 1: General, Digital, Certification, SEO, GEO)
+// moon — Panel Renderers (Part 1: General, Digital, Certification, SEO, GEO)
 function panelGeneral() {
   const d = COMPANY_DATA;
   return `<div class="grid-2">
@@ -107,7 +107,7 @@ function panelCertification() {
       </ul>
     </div>
     <div class="card full animate-in">
-      <div class="card-header"><span class="card-title"><i class="fas fa-info-circle"></i> À propos de la Certification Artemis</span></div>
+      <div class="card-header"><span class="card-title"><i class="fas fa-info-circle"></i> À propos de la Certification moon</span></div>
       <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px">
         ${c.levels.filter(l=>l.id!=='none').map(l => `
           <div style="padding:16px;background:var(--bg-glass);border-radius:var(--radius-md);text-align:center;border:1px solid ${c.level===l.id?l.color+'44':'var(--border)'}">
@@ -117,7 +117,7 @@ function panelCertification() {
           </div>`).join('')}
       </div>
       <div style="margin-top:16px;font-size:13px;color:var(--text-secondary);line-height:1.7;padding:16px;background:var(--bg-glass);border-radius:var(--radius-md)">
-        <i class="fas fa-shield-alt" style="color:var(--accent);margin-right:6px"></i><strong style="color:var(--text-primary)">La certification Artemis</strong> garantit que les données d'une entreprise ont été vérifiées et croisées entre plusieurs sources officielles. Elle évalue l'identité juridique, la cohérence des informations publiques (NAP), la conformité légale du site web, et la qualité de la présence digitale. Plus le score est élevé, plus les données sont fiables et complètes.
+        <i class="fas fa-shield-alt" style="color:var(--accent);margin-right:6px"></i><strong style="color:var(--text-primary)">La certification moon</strong> garantit que les données d'une entreprise ont été vérifiées et croisées entre plusieurs sources officielles. Elle évalue l'identité juridique, la cohérence des informations publiques (NAP), la conformité légale du site web, et la qualité de la présence digitale. Plus le score est élevé, plus les données sont fiables et complètes.
       </div>
     </div>
   </div>`;

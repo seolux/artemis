@@ -1,4 +1,4 @@
-// Artemis — Enriched Company Data: Luxsuum
+// moon — Enriched Company Data: Luxsuum
 const COMPANY_DATA = {
   // ── Identity ──
   name: "Luxsuum",
@@ -21,7 +21,7 @@ const COMPANY_DATA = {
   // ── Scores ──
   scores: { completeness: 78, digitalPresence: 65, reputation: 82 },
 
-  // ── Artemis Certification ──
+  // ── moon Certification ──
   certification: {
     level: "silver", // none | bronze | silver | gold | platinum
     score: 72,
@@ -29,14 +29,14 @@ const COMPANY_DATA = {
     criteria: [
       { name: "Identité juridique vérifiée", status: "pass", source: "RCS Luxembourg", detail: "RCS B234567 confirmé" },
       { name: "Adresse physique confirmée", status: "pass", source: "Google Maps + RCS", detail: "2 emplacements vérifiés" },
-      { name: "Site web actif et SSL valide", status: "pass", source: "Scan Artemis", detail: "luxsuum.lu — SSL valide jusqu'au 15/08/2026" },
+      { name: "Site web actif et SSL valide", status: "pass", source: "Scan moon", detail: "luxsuum.lu — SSL valide jusqu'au 15/08/2026" },
       { name: "Cohérence NAP (Nom, Adresse, Tél)", status: "warning", source: "Cross-source", detail: "Numéro de téléphone différent sur Editus vs site web" },
       { name: "Google Business Profile vérifié", status: "pass", source: "Google", detail: "Profil vérifié par Google" },
       { name: "Avis clients authentiques (>10)", status: "pass", source: "Google + Editus", detail: "79 avis au total" },
       { name: "Mentions légales conformes", status: "pass", source: "Site web", detail: "CGV, mentions légales, politique données présentes" },
       { name: "Données financières disponibles", status: "fail", source: "RCS / LBR", detail: "Bilans non publiés ou non accessibles" },
       { name: "Réseaux sociaux actifs", status: "warning", source: "Facebook + Instagram", detail: "Dernière publication > 30 jours" },
-      { name: "Schema.org / données structurées", status: "fail", source: "Scan Artemis", detail: "Aucun balisage Schema.org détecté" }
+      { name: "Schema.org / données structurées", status: "fail", source: "Scan moon", detail: "Aucun balisage Schema.org détecté" }
     ],
     levels: [
       { id: "none", label: "Non certifié", min: 0, icon: "fas fa-times-circle", color: "#64748b" },

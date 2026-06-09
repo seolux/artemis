@@ -1,4 +1,4 @@
-// Artemis — Integrated Chatbot
+// moon — Integrated Chatbot
 const CHAT_SUGGESTIONS = [
   "Quel est le score SEO de cette entreprise ?",
   "Quels sont les horaires d'ouverture ?",
@@ -15,7 +15,7 @@ const CHAT_SUGGESTIONS = [
 const CHAT_RESPONSES = {
   // Greeting
   _greeting: [/^(bonjour|hello|salut|hey|hi|coucou)/i, () =>
-    `Bonjour ! Je suis l'assistant Artemis. Je peux répondre à toutes vos questions sur **${COMPANY_DATA.name}**. Que souhaitez-vous savoir ?`
+    `Bonjour ! Je suis l'assistant moon. Je peux répondre à toutes vos questions sur **${COMPANY_DATA.name}**. Que souhaitez-vous savoir ?`
   ],
   // SEO
   seo: [/seo|référencement|optimis/i, () => {
@@ -83,7 +83,7 @@ const CHAT_RESPONSES = {
     const passed = c.criteria.filter(x => x.status === 'pass').length;
     const warns = c.criteria.filter(x => x.status === 'warning').length;
     const fails = c.criteria.filter(x => x.status === 'fail').length;
-    return `**Certification Artemis : ${c.level.toUpperCase()}** (${c.score}/100)\n\n• ${passed} critères validés\n• ${warns} points d'attention\n• ${fails} critères échoués\n\nPour atteindre le niveau Gold (>=80), il faudrait :\n• Publier les données financières\n• Ajouter le balisage Schema.org\n• Harmoniser le numéro de téléphone sur toutes les plateformes\n• Reprendre une activité régulière sur les réseaux sociaux`;
+    return `**Certification moon : ${c.level.toUpperCase()}** (${c.score}/100)\n\n• ${passed} critères validés\n• ${warns} points d'attention\n• ${fails} critères échoués\n\nPour atteindre le niveau Gold (>=80), il faudrait :\n• Publier les données financières\n• Ajouter le balisage Schema.org\n• Harmoniser le numéro de téléphone sur toutes les plateformes\n• Reprendre une activité régulière sur les réseaux sociaux`;
   }],
   // Location
   localisation: [/adresse|locali|où|emplacement|kirchberg|cloche|parking/i, () => {
@@ -147,7 +147,7 @@ function initChat() {
   ).join('');
 
   // Welcome message
-  addMessage('bot', `Bonjour ! Je suis l'assistant **Artemis**. Posez-moi n'importe quelle question sur **${COMPANY_DATA.name}** et j'y répondrai à partir des données collectées.`);
+  addMessage('bot', `Bonjour ! Je suis l'assistant **moon**. Posez-moi n'importe quelle question sur **${COMPANY_DATA.name}** et j'y répondrai à partir des données collectées.`);
 
   // Toggle panel — only for mobile (≤1024px), on desktop it's always visible
   toggleBtn.addEventListener('click', () => {

@@ -1,4 +1,4 @@
-// Artemis — Main Application Logic
+// moon — Main Application Logic
 document.addEventListener('DOMContentLoaded', () => {
   renderContextBar();
   renderStats();
